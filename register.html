@@ -33,17 +33,16 @@
 			</h2>
 			<div class="password">
 				<input name	="password" type="password" placeholder="Mot de passe" ></input>
-				<input name	="password" type="password" placeholder="Confirmez votre mot de passe" ></input>
+				<input name	="checkpassword" type="password" placeholder="Confirmez votre mot de passe" ></input>
 			</div>
 
 			<h2>
 				Numéro de téléphone
 			</h2>
-			<input name	="phone" type="phone" placeholder="+33 XXXXXXXXX" value="+33 "></input>
-
+			<input name	="phone" type="phone" placeholder="+33 XXXXXXXXX" value=""></input>
+			<div id ="error"> <?php echo $errormsg; ?> </div>
 			<input type	= "submit"  value="Soumettre"></input>
 		</div>
 	</form>
-<div id ="error"> <?php echo $errormsg; ?> </div>
 </body>
 </html>

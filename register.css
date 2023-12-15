@@ -1,5 +1,6 @@
 body {
     background-image: url("img/register_background.svg");
+    background-repeat: no-repeat;
     font-family: encode-sans;
 }
 
@@ -55,5 +56,10 @@ input[type="submit"] {
     color: #FBFCFB;
     margin-top: 5%;
     margin-bot: 5%;
+}
+
+#error {
+    text-align: center;
+    color: #FBFCFB;
 }
 
