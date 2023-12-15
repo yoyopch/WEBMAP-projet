@@ -3,18 +3,24 @@
 
 	<head>
 		<meta charset="utf-8">
+		<!--Link CSS-->
+		<link href="login.css" rel="stylesheet">
 		<title>identification</title>
 	</head>
 
 	<body>
-		<h3> Formulaire d'authentification </h3>
-
-		<form action="login.php" method="post">
-			<input name	="email" type="email" placeholder="Email" ></input><br>
-			<input name	="password" type="password" placeholder="Password" ></input><br>
-			<input type	= "submit"  value="soumettre">
-		</form>
-
+		<div class="flex-log">
+			<div class="logimage"><img class="loginimg" src="IMG/login_img.svg"></div>
+			<div class="loginbox">
+				<h3> Content de vous revoir ! </h3><br>
+				<form action="login.php" method="post">
+					<input name	="email" type="email" placeholder="Email" ></input><br>
+					<input name	="password" type="password" placeholder="Mot de passe" ></input><br>
+					<input type	= "submit"  value="connexion"><br>
+					<input type	= "button"  value="inscription">
+				</form>
+			</div>
+		</div>
 		<div id ="m"> <?php echo $msg; ?> </div>
 	</body>
 </html>
