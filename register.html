@@ -1,17 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
-	<title>accueil</title>
+	<meta charset="UTF-8">
+	<title>Inscription</title>
+	//<link rel="stylesheet" href="register.css">
 </head>
+
 <body>
-<form action="register.php" method="post">
-	<input name ="nom" placeholder="Name" ></input><br>
-	<input name ="prenom" placeholder="Prenom" ></input><br>
-	<input name	="email" type="email" placeholder="Email" ></input><br>
-	<input name	="password" type="password" placeholder="Password" ></input><br>
-	<input type	= "submit"  value="soumettre">
-</form>
+<div class="container_title">
+	<h1>
+		Inscrivez-vous !
+	</h1>
+</div>
+
+<div class="container_inscription">
+	<form action="register.php" method="post">
+		<h2>
+			Nom Complet
+		</h2>
+		<div class="nom">
+			<input name ="prenom" placeholder="Prenom" ></input><br>
+			<input name ="nom" placeholder="Nom" ></input><br>
+		</div>
+
+		<h2>
+			Email
+		</h2>
+		<div class="email">
+			<input name	="email" type="email" placeholder="Email" ></input><br>
+		</div>
+
+		<h2>
+			Mot de passe
+		</h2>
+		<div class="password">
+			<input name	="password" type="password" placeholder="Mot de passe" ></input><br>
+			<input name	="password" type="password" placeholder="Confirmez votre mot de passe" ></input><br>
+		</div>
+
+		<h2>
+			Numéro de téléphone
+		</h2>
+		<div class=phone>
+			<input name	="phone" type="phone" placeholder="+33 XXXXXXXXX" ></input><br>
+		</div>
+
+		<input type	= "submit"  value="soumettre">
+	</form>
+</div>
 <div id ="error"> <?php echo $errormsg; ?> </div>
 </body>
 </html>
