@@ -1,27 +1,31 @@
 <!doctype html>
 <html lang="fr">
-
-	<head>
-		<meta charset="utf-8">
-		<!--Link CSS-->
-		<link href="login.css" rel="stylesheet">
-		<title>identification</title>
-	</head>
+<head>
+	<meta charset="utf-8">
+	<link href="login.css" rel="stylesheet">
+	<title>identification</title>
+</head>
 
 
-	<body>
-		<div class="flex-log">
-			<div class="logimage"><img class="loginimg" src="IMG/login_img.svg" alt=""></div>
-			<div class="loginbox">
-				<div class="logintitle"><h3> Content de vous revoir ! </h3></div>
-				<form action="login.php" method="post">
-					<input name	="email" type="email" placeholder="Email" ></input><br>
-					<input name	="password" type="password" placeholder="Mot de passe" ></input><br>
-					<input type	= "submit"  value="connexion"><br>
-					<input type	= "button"  value="inscription">
-				</form>
+<body>
+	<div class="container-login">
+		<div class="login-image"><img class="login-img" src="IMG/login_img.svg" alt=""></div>
+		<div class="flexbox-login">
+			<div class="title-login">
+				<div><h3> Content de vous revoir ! </h3></div>
+				<div class="div-mini-img"><img class="mini-img" src="IMG/trefle.png"></div>
 			</div>
+			<div class="form-login">
+				<form action="login.php" method="post">
+					<input name="email" type="email" placeholder="| Email" ></input><br>
+					<input name	="password" type="password" placeholder="| Mot de passe" ></input><br>
+					<input type	= "submit"  value="Connexion"><br>
+					<div class="login-ou"><p>-------------- ou --------------</p></div>
+					<input type="button"  value="Inscription">
+			</form>
 		</div>
-		<div id ="m"> <?php echo $msg; ?> </div>
-	</body>
+	</div>
+	</div>
+<div id ="m"> <?php echo $msg; ?> </div>
+</body>
 </html>
