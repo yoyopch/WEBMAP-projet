@@ -1,0 +1,16 @@
+.flex-log {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    box-shadow: 10px 10px 5px lightgrey;
+}
+
+.loginbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.logintitle {
+    font-size: 150%;
+}
