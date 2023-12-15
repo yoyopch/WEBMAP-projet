@@ -1,0 +1,14 @@
+body {
+    background-image: url("register_background.svg");
+}
+
+.container_box {
+    font-family: encode-sans;
+    display: flex; /* Flexbox */
+    flex-direction: row; /* Mettre en ligne */
+    margin: auto; /* Centrer */
+    width: 90%;
+    height: 100%;
+    margin-top: 5%; /* Espacement du header */
+    margin-bottom: 5%; /* Espacement du footer */
+}
