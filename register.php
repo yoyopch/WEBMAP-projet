@@ -2,6 +2,7 @@
 $nom =  isset($_POST['nom'])?($_POST['nom']):'';
 $prenom =  isset($_POST['prenom'])?($_POST['prenom']):'';
 $email =  isset($_POST['email'])?($_POST['email']):'';
+$phone =  isset($_POST['phone'])?($_POST['phone']):'';
 $password =  isset($_POST['password'])?($_POST['password']):'';
 $errormsg = "";
 
@@ -10,19 +11,20 @@ if  (count($_POST)==0)
 else {
     if (checkpassword($password)) {
         if (!checkmail($email)){
-            incription($nom, $prenom, $email, $password);
+            incription($nom, $prenom, $email,$phone, $password);
         }
     }
 }
 
-function incription($nom,$prenom,$email,$password){
+function incription($nom, $prenom, $email, $phone, $password){
     require('connectSQL.php');
-    $sql = "INSERT INTO utilisateur (nom, prenom, email, password) VALUES (:nom, :prenom, :email,:password)";
+    $sql = "INSERT INTO utilisateur (nom, prenom, email, phone, password) VALUES (:nom, :prenom, :email, :phone, :password)";
     try {
         $commande = $pdo->prepare($sql);
         $commande->bindParam(':nom', $nom);
         $commande->bindParam(':prenom', $prenom);
         $commande->bindParam(':email', $email);
+        $commande->bindParam(':phone', (int)$phone);
         $commande->bindParam(':password',  password_hash($password, PASSWORD_DEFAULT));
 
         $bool = $commande->execute();
