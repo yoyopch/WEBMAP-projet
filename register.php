@@ -4,19 +4,23 @@ $prenom =  isset($_POST['prenom'])?($_POST['prenom']):'';
 $email =  isset($_POST['email'])?($_POST['email']):'';
 $phone =  isset($_POST['phone'])?($_POST['phone']):'';
 $password =  isset($_POST['password'])?($_POST['password']):'';
+$passwordTwo  = isset($_POST['checkpassword'])?($_POST['checkpassword']):'';
 $errormsg = "";
 
 if  (count($_POST)==0)
     require("register.html");
 else {
-    if (checkpassword($password)) {
-        if (!checkmail($email)){
-            incription($nom, $prenom, $email,$phone, $password);
+    if (checkpassword($password,$passwordTwo)) {
+        if (checkPhone($phone)) {
+            if (!checkmail($email)) {
+                incription($nom, $prenom, $email, $phone, $password);
+            }
         }
     }
 }
 
 function incription($nom, $prenom, $email, $phone, $password){
+    $newphone = "+33".$phone;
     require('connectSQL.php');
     $sql = "INSERT INTO utilisateur (nom, prenom, email, phone, password) VALUES (:nom, :prenom, :email, :phone, :password)";
     try {
@@ -24,12 +28,13 @@ function incription($nom, $prenom, $email, $phone, $password){
         $commande->bindParam(':nom', $nom);
         $commande->bindParam(':prenom', $prenom);
         $commande->bindParam(':email', $email);
-        $commande->bindParam(':phone', (int)$phone);
+        $commande->bindParam(':phone', $newphone);
         $commande->bindParam(':password',  password_hash($password, PASSWORD_DEFAULT));
 
         $bool = $commande->execute();
         if ($bool) {
             $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+            var_dump($resultat);
             require("login.html");
         }
     }
@@ -57,29 +62,39 @@ function checkmail($email){
     if (count($resultat) == 0)
         return false;
     else{
-        error("email déjà utiliser !");
+        error("email déjà utilisé !");
         return true;
     }
 }
 
-function checkpassword($password){
+function checkpassword($password,$passwordTwo){
     $passwordSize = 8;
 
-    if (regex($password)) {
-        if (strlen($password) >= $passwordSize) {
-            var_dump(strlen($password));
-            return true;
-        } else {
-            error("Un mot de passe sup à $passwordSize");
-        }
+    if (regexMdp($password)) {
+        if ($password != $passwordTwo) { return error("Il faut entrer les mêmes mdp !");}
+            if (strlen($password) >= $passwordSize) {
+                return true;
+            } else {
+                error("Un mot de passe sup à $passwordSize");
+            }
     }
     return false;
 }
+
+function checkPhone($phone){
+    if (preg_match('/^([0-9]{10,15})$/', $phone)){
+        return true;
+    }else{
+        error("ZERHJZEJHHSDFJJDSF");
+        return false;
+    }
+}
+
 function error($message){
     $errormsg = $message;
     require("register.html");
 }
-function regex($mot){
+function regexMdp($mot){
     if (preg_match('/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&!*_])[A-Za-z\d@#$%^&!*_]{8,}$/', $mot)){
         return true;
     }else{
