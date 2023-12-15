@@ -1,0 +1,24 @@
+.imglogo{
+    height: 80px;
+    position: fixed;
+}
+
+ul.nav{
+    /*background-color: blue;*/
+    height: 80px;
+    box-shadow: 0 4px 2px -2px grey;
+
+}
+
+ul.nav li a{
+    color: black;
+    font-size: 20px;
+}
+
+ul.nav li img{
+    height: 80px;
+}
+
+ul.nav li.bio{
+    align-self: center;
+}
