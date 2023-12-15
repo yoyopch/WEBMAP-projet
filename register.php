@@ -6,7 +6,7 @@ $password =  isset($_POST['password'])?($_POST['password']):'';
 $errormsg = "";
 
 if  (count($_POST)==0)
-    require ("inscription.tpl") ;
+    require("register.html");
 else {
     if (checkpassword($password)) {
         if (!checkmail($email)){
@@ -28,7 +28,7 @@ function incription($nom,$prenom,$email,$password){
         $bool = $commande->execute();
         if ($bool) {
             $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-            require("ident.tpl");
+            require("login.html");
         }
     }
     catch (PDOException $e) {
@@ -75,7 +75,7 @@ function checkpassword($password){
 }
 function error($message){
     $errormsg = $message;
-    require ("inscription.tpl");
+    require("register.html");
 }
 function regex($mot){
     if (preg_match('/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&!*_])[A-Za-z\d@#$%^&!*_]{8,}$/', $mot)){
@@ -85,4 +85,6 @@ function regex($mot){
         return false;
     }
 }
+
 ?>
+

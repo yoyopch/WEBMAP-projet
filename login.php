@@ -6,11 +6,11 @@
 	$msg = '';
 	
 	if  (count($_POST)==0)
-	require ("ident.tpl") ;
+	require("login.html");
     else {
-		if  (!verif_identV3($email,$password,$p)) {
+		if  (!verifInfo($email,$password,$p)) {
 			$msg ="Erreur de saisie OU utilisateur inconnu";
-			require ("ident.tpl") ;
+			require("login.html");
 		}
 		else {
 			$_SESSION['profil'] = $p;
@@ -19,7 +19,7 @@
 		}
 	}	
 
-	function verif_identV3($nom,$num,&$profil = array()) {
+	function verifInfo($nom,$num,&$profil = array()) {
 		require('connectSQL.php');
 		$sql="SELECT * FROM `utilisateur` WHERE email=:email";
 		try {
@@ -28,7 +28,6 @@
 			$bool = $commande->execute();
 			if ($bool) {
 				$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-				//var_dump($num,$resultat[0]['password']);
 			}
 		}
 		catch (PDOException $e) {
