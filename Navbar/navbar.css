@@ -3,6 +3,7 @@
     width: 100%;
     height: 70px;
     display: flex;
+    background-color: white;
 }
 
 .iconNavBar .imglogo {
@@ -14,16 +15,16 @@
 
 .logoAccount {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 10px;
 }
 
 ul.nav {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 70px;
-    box-shadow: 0 6px 2px -2px #cbcbcb;
+    height: 65px;
+
 }
 
 ul.nav li a {

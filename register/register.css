@@ -1,7 +1,9 @@
 body {
-    background-image: url("img/register_background.svg");
+    background-image: url("../IMG/register_background.svg");
     background-repeat: no-repeat;
+    background-size: cover;
     font-family: encode-sans;
+
 }
 
 h1 {
@@ -15,6 +17,14 @@ h2 {
     margin-left: 1%;
     margin-top: 0.5%;
     margin-bottom: 0.5%;
+}
+
+.logDiv{
+    width: 100%;
+    height: auto;
+    margin-top: 3%;
+
+    color: white;
 }
 
 .container_inscription {
