@@ -4,72 +4,82 @@ body {
     background-size: cover;
     font-family: encode-sans;
 
+    h1 {
+        font-size: 350%;
+        text-align: center;
+        color: #FBFCFB;
+        margin-bottom: 5%;
+    }
+
+    h2 {
+        font-size: 180%;
+        color: #FBFCFB;
+        margin-left: 1%;
+        margin-top: 0.5%;
+        margin-bottom: 0.5%;
+    }
+
+    .logDiv{
+        width: 100%;
+        height: auto;
+        margin-top: 3%;
+
+        color: white;
+    }
+
+    .container_inscription {
+        margin: auto;
+        width: 65%;
+        height: 100%;
+    }
+
+    input {
+        width: 49%;
+        padding: 1%;
+        border-radius: 10px;
+        border: 3px solid #5EAE64;
+        background: rgba(255, 255, 255, 0.30);
+        margin-bottom: 3%;
+    }
+
+    input[type="phone"], [type="email"] {
+        width: 100%;
+    }
+
+    ::placeholder {
+        color: #000;
+    }
+
+    .nom {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .password {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        background: #5EAE64;
+        color: #FBFCFB;
+        margin-top: 5%;
+        margin-bot: 5%;
+        padding : 0.5%;
+
+    }
+
+    input[value="Soumettre"] {
+        font-size: 150%;
+        font-weight: bold;
+    }
+
+    #error {
+        text-align: center;
+        color: #FBFCFB;
+    }
 }
 
-h1 {
-    font-size: 350%;
-    text-align: center;
-    color: #FBFCFB;
-}
 
-h2 {
-    color: #FBFCFB;
-    margin-left: 1%;
-    margin-top: 0.5%;
-    margin-bottom: 0.5%;
-}
-
-.logDiv{
-    width: 100%;
-    height: auto;
-    margin-top: 3%;
-
-    color: white;
-}
-
-.container_inscription {
-    margin: auto;
-    width: 65%;
-    height: 100%;
-}
-
-input{
-    width: 45%;
-    padding: 1.5%;
-    border-radius: 10px;
-    border: 3px solid #5EAE64;
-    background: rgba(255, 255, 255, 0.30);
-    margin-bottom: 5%;
-}
-
-input[type="phone"], [type="email"] {
-    width: 96%;
-}
-
-::placeholder {
-    color: #000;
-}
-
-.nom {
-    display: flex;
-    justify-content: space-between;
-}
-
-.password {
-    display: flex;
-    justify-content: space-between;
-}
-
-input[type="submit"] {
-    width: 100%;
-    background: #5EAE64;
-    color: #FBFCFB;
-    margin-top: 5%;
-    margin-bot: 5%;
-}
-
-#error {
-    text-align: center;
-    color: #FBFCFB;
-}
 

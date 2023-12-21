@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>identification</title>
 </head>
-<?php include('navbar.html'); ?>
+<?php include('Navbar/navbar.html'); ?>
 
 <body>
     <h1>Bienvenue : <?php echo $nom ?></h1>
