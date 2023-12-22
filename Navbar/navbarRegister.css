@@ -1,0 +1,14 @@
+.navbar-brand img{
+    height: 70px;
+}
+.offcanvas-title span img{
+    height: 50px;
+}
+.offcanvas-title{
+    text-align: center;
+    align-self: center;
+}
+
+.offcanvas-body form button.btnRegister{
+    display: none;
+}
