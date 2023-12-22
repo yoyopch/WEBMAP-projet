@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <title>Découvrir le Bio</title>
     <link rel="stylesheet" href="discover.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 </head>
-<?php include('Navbar/navbar.html'); ?>
+
 <body>
+<div class="nav-placeholder">
+
+</div>
+<script>
+    $(function () {
+        $(".nav-placeholder").load("../Navbar/navbar.html");
+    });
+</script>
 <div class="blank">
     <div class="titleBio">
         <h1>Découvrir le BIO </h1>
