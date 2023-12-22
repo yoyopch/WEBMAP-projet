@@ -8,20 +8,20 @@ $passwordTwo  = isset($_POST['checkpassword'])?($_POST['checkpassword']):'';
 $errormsg = "";
 
 if  (count($_POST)==0)
-    require("register.html");
+    require('register.tpl');
 else {
     if (checkpassword($password,$passwordTwo)) {
         if (checkPhone($phone)) {
             if (!checkmail($email)) {
-                incription($nom, $prenom, $email, $phone, $password);
+                inscription($nom, $prenom, $email, $phone, $password);
             }
         }
     }
 }
 
-function incription($nom, $prenom, $email, $phone, $password){
+function inscription($nom, $prenom, $email, $phone, $password){
     $newphone = "+33".$phone;
-    require('connectSQL.php');
+    require('../connectSQL.php');
     $sql = "INSERT INTO utilisateur (nom, prenom, email, phone, password) VALUES (:nom, :prenom, :email, :phone, :password)";
     try {
         $commande = $pdo->prepare($sql);
@@ -35,7 +35,7 @@ function incription($nom, $prenom, $email, $phone, $password){
         if ($bool) {
             $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
             var_dump($resultat);
-            require("login.html");
+            require("../login.tpl");
         }
     }
     catch (PDOException $e) {
@@ -45,7 +45,7 @@ function incription($nom, $prenom, $email, $phone, $password){
 }
 
 function checkmail($email){
-    require('connectSQL.php');
+    require('../connectSQL.php');
     $sql="SELECT * FROM `utilisateur` WHERE email=:email";
     try {
         $commande = $pdo->prepare($sql);
@@ -82,17 +82,17 @@ function checkpassword($password,$passwordTwo){
 }
 
 function checkPhone($phone){
-    if (preg_match('/^([0-9]{10,15})$/', $phone)){
+    if (preg_match('/^([0-9]{9,15})$/', $phone)){
         return true;
     }else{
-        error("ZERHJZEJHHSDFJJDSF");
+        error("Numero de phone pas suffisant");
         return false;
     }
 }
 
 function error($message){
     $errormsg = $message;
-    require("register.html");
+    require("register.tpl");
 }
 function regexMdp($mot){
     if (preg_match('/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&!*_])[A-Za-z\d@#$%^&!*_]{8,}$/', $mot)){

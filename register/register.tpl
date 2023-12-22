@@ -4,20 +4,12 @@
     <meta charset="UTF-8">
     <title>Inscription</title>
     <link rel="stylesheet" href="register.css">
-    <link rel="stylesheet" href="../Navbar/navbar.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
 </head>
 
 <body>
 <div class="nav-placeholder">
 
 </div>
-<script>
-    $(function () {
-        $(".nav-placeholder").load("../Navbar/navbar.html");
-    });
-</script>
 
 <div class="logDiv">
     <h1>
@@ -25,7 +17,7 @@
         <span><img src="../IMG/emojiCerice.svg"></span>
     </h1>
 
-    <form action="../register.php" method="post">
+    <form action="register.php" method="post">
         <div class="container_inscription">
             <h2>
                 Nom complet
