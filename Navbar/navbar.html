@@ -29,19 +29,37 @@
 
 
 <!--bootstrap Navbar-->
-<ul class="nav jjustify-content-between align-items-center">
-    <span id="imgLogoSpan"><img class="imglogo d-flex align-items-center" src="../IMG/logo-site.svg" alt="logo-site"></span>
-    <li class="nav-item bio right">
-        <a aria-current="page" class="nav-link active" href="#">PRODUITS</a>
-    </li>
-    <li class="nav-item bio right">
-        <a class="nav-link" href="#">MAGASINS</a>
-    </li>
-    <li class="nav-item bio">
-        <a class="nav-link" href="#">DECOUVRIR LE BIO </a>
-    </li>
-    <span ><img class="logoAccount" src="../IMG/userAccount.svg" alt="logo-user"></span>
-</ul>
+<nav class="navbar bg-body-tertiary ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"> <img src="../IMG/logo-site.svg"> </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BioLife <span> <img src="../IMG/logo-site.svg"></span> </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Magasins</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Découvrir le bio</a>
+                    </li>
+                </ul>
+                <form class="d-flex mt-3" role="search">
+                    <button class="btn btn-outline-success" type="submit">Login</button>
+                    <button class="btn btn-outline-success" type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
 
 </body>
 </html>

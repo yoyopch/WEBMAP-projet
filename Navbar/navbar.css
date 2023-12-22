@@ -1,33 +1,11 @@
-ul.nav {
-    position: relative;
-    width: 100%;
-    height: 65px;
-
+.navbar-brand img{
+    height: 70px;
 }
-
-ul.nav li.bio {
+.offcanvas-title span img{
+    height: 50px;
+}
+.offcanvas-title{
+    text-align: center;
     align-self: center;
 }
-
-ul.nav span img{
-    height: 60px;
-}
-ul.nav #imgLogoSpan{
-    left: 0;
-}
-
-ul.nav .right{
-    border-right: 1px solid black;
-}
-
-ul.nav li a {
-    color: black;
-    font-size: 20px;
-}
-
-ul.nav li img {
-    height: 60px;
-}
-
-
 
