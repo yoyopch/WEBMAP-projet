@@ -5,7 +5,7 @@
     <title>Inscription</title>
     <link rel="stylesheet" href="../register/register.css">
 </head>
-<?php include('../Navbar/navbar.html'); ?>
+<?php include('../Navbar/navbar.php'); ?>
 
 <body>
 <div class="nav-placeholder">
