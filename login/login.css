@@ -1,0 +1,100 @@
+.container-login {
+    width: 100%;
+    max-width: 70%;
+    border-radius: 25px;
+    background-color: #FBFCFB;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.imgLogindecor {
+    background-image: url("../IMG/login_img.svg");
+    width: 50%;
+    background-size: cover;
+}
+
+.flexbox-login {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+
+}
+
+.title-login {
+    font-size: 150%;
+    margin-top: 10%;
+}
+
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    text-align: -webkit-center;
+
+}
+
+
+input[name="email"], [name="password"] {
+    width: 90%;
+    padding: 6%;
+    font-size: 1em;
+    border-radius: 17px;
+    margin: 5%;
+    border: gray;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+input[type="submit"] {
+    margin-top: 10%;
+    width: 80%;
+    padding: 6%;
+    background-color: #5EAE64;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 75px;
+    cursor: pointer;
+    font-size: 111%;
+}
+
+input[type="button"] {
+    width: 80%;
+    padding: 6%;
+    background-color: #FFFFFF;
+    color: black;
+    font-weight: bold;
+    border-color: black;
+    border-radius: 75px;
+    cursor: pointer;
+    font-size: 111%;
+}
+
+.login-ou {
+    display: flex;
+    align-items: center;
+    color: #a7a7a7;
+
+}
+
+.line {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #a7a7a7;
+    margin: 0 10px; /* Adjust margin as needed */
+
+}
+
+.formulaire {
+    width: 100%;
+
+    padding-top: 10%;
+    padding-bottom: 20%;
+}
+
+.mdp {
+
+}
