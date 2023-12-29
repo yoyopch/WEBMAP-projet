@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <title>Découvrir le Bio</title>
     <link rel="stylesheet" href="discover.css">
+    <link rel="stylesheet" href="../Navbar/navbar.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <!--Link Boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body>
-<?php include('../Navbar/navbar.php'); ?>
+<div class="nav-placeholder">
+
+</div>
+<script>
+    $(function () {
+        $(".nav-placeholder").load("../Navbar/navbar.html");
+    });
+</script>
 <div class="blank">
     <div class="titleBio">
         <h1>Découvrir le BIO </h1>
