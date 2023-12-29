@@ -6,7 +6,7 @@
     <title>BioLife</title>
 
     <!--Link CSS-->
-    <link href="navbar.css" rel="stylesheet">
+    <link href="../Navbar/navbar.css" rel="stylesheet">
 
 
     <!--Link JS-->
@@ -25,11 +25,11 @@
 
 <body>
 
-<!--<p class="userName"> <?php echo($nom) ?> </p>-->
+<!--<p class="userName"> <?php /*echo($nom) */?> </p>-->
 
 
 <!--bootstrap Navbar-->
-<nav class="navbar bg-body-tertiary fixed-top">
+<nav class="navbar ">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"> <img src="../IMG/logo-site.svg"> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -49,12 +49,11 @@
                         <a class="nav-link" href="#">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Découvrir le bio</a>
+                        <a class="nav-link" href="../discover/discover.php">Découvrir le bio</a>
                     </li>
                 </ul>
-                <form class="d-flex mt-3" role="search">
-                    <button class="btn btn-outline-success" type="submit">Login</button>
-                    <button class="btn btn-outline-success" type="submit">Register</button>
+                <form action="../login/login.php" class="d-flex mt-3" role="search">
+                    <button class="btn btn-outline-success btnLogin" type="submit">Login</a></button>
                 </form>
             </div>
         </div>

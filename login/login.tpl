@@ -11,14 +11,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-<div class="nav-placeholder">
-</div>
-<script>
-    $(function () {
-        $(".nav-placeholder").load("../Navbar/navbar.html");
-    });
-</script>
+<?php include('../Navbar/navbar.php'); ?>
+
 <div class="container-login">
     <div class="imgLogindecor">
     </div>
@@ -33,7 +27,7 @@
                 </h3>
             </div>
 
-            <form class="formulaire" action="../login.php" method="post">
+            <form class="formulaire" action="login.php" method="post">
                 <input name="email" type="email" placeholder="| Email"></input><br>
                 <input name="password" type="password" placeholder="| Mot de passe"></input><br>
                 <p class="mdp">Mot de passe oublié ?</p>

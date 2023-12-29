@@ -35,7 +35,7 @@ function inscription($nom, $prenom, $email, $phone, $password){
         if ($bool) {
             $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
             var_dump($resultat);
-            require("../login.tpl");
+            require("../login/login.tpl");
         }
     }
     catch (PDOException $e) {

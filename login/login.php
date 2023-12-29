@@ -1,26 +1,28 @@
 <?php
 	session_start();
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
 
 	$email =  isset($_POST['email'])?($_POST['email']):'';
 	$password =  isset($_POST['password'])?($_POST['password']):'';
 	$msg = '';
 	
 	if  (count($_POST)==0)
-	require("login.html");
+	require("../login/login.tpl");
     else {
 		if  (!verifInfo($email,$password,$p)) {
 			$msg ="Erreur de saisie OU utilisateur inconnu";
-			require("login.html");
+			require("../login/login.tpl");
 		}
 		else {
 			$_SESSION['profil'] = $p;
-			$url = "accueil.php";
+			$url = "../accueil.php";
 			header("Location:" . $url) ;
 		}
 	}	
 
 	function verifInfo($nom,$num,&$profil = array()) {
-		require('connectSQL.php');
+		require('../connectSQL.php');
 		$sql="SELECT * FROM `utilisateur` WHERE email=:email";
 		try {
 			$commande = $pdo->prepare($sql);
@@ -45,4 +47,4 @@
 		}
 	}
 
-?>
+
