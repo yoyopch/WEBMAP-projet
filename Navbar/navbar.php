@@ -25,7 +25,7 @@
 
 <body>
 
-<!--<p class="userName"> <?php echo($nom) ?> </p>-->
+<!--<p class="userName"> <?php /*echo($nom) */?> </p>-->
 
 
 <!--bootstrap Navbar-->
@@ -49,12 +49,12 @@
                         <a class="nav-link" href="#">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../discover/discover.html">Découvrir le bio</a>
+                        <a class="nav-link" href="../discover/discover.php">Découvrir le bio</a>
                     </li>
                 </ul>
                 <form class="d-flex mt-3" role="search">
-                    <button class="btn btn-outline-success" type="submit">Login</button>
-                    <button class="btn btn-outline-success" type="submit">Register</button>
+                    <button class="btn btn-outline-success btnLogin" type="submit">Login</button>
+                    <button class="btn btn-outline-success btnRegister" type="submit">Register</button>
                 </form>
             </div>
         </div>
