@@ -12,11 +12,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<?php include('../Navbar/navbar.php'); ?>
 
 <body>
-<div class="nav-placeholder">
-</div>
+<?php include('../Navbar/navbar.php'); ?>
+
 <div class="logDiv">
     <h1>
         Inscrivez-vous !
