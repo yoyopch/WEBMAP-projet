@@ -144,5 +144,5 @@ function removeAllAnimationClassFromMap() {
     });
 
     // back to default position
-    map.setView([lat, lng], zoom);
+    map.setView([e.latitude, e.longitude], zoom);
 }
