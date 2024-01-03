@@ -11,7 +11,7 @@ let config = {
 // magnification with which the map will start
 const zoom = 13;
 
-
+let allmagasins
 
 
 
@@ -121,7 +121,7 @@ const points = [
         //1er shop
         lat: 48.848332017929664,
         lng: 2.2823609014907467,
-        text: ajouterFruit(1),
+        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
     },
     {
 
@@ -164,7 +164,7 @@ function FruitsMagasin(idMagasin) {
 function ajouterFruit(name, price, stock, desc){
     return `
         <div class="fruit-item">
-            <img src="${imgPath}" alt="${name}" class="fruit-img" />
+            <!--<img src="${imgPath}" alt="${name}" class="fruit-img" />-->
             <div class="fruit-details">
                 <h3 class="fruit-name">${name}</h3>
                 <p class="fruit-price">${price}</p>
@@ -178,16 +178,19 @@ function ajouterFruit(name, price, stock, desc){
 
 points.map(({ lat, lng, text }) => {
     // create marker and add to map
-    const marker = L.marker([lat, lng], {
-        icon: s_icon,
-    }).addTo(map);
+
+    for (const element of allmagasins){
+        const marker = L.marker([element["latitude"], element["longitude"]], {
+            icon: s_icon,
+        }).addTo(map);
+    }
 
     // crewate popup, set contnet
-    const popup = L.popup({
+/*    const popup = L.popup({
         pane: "fixed",
         className: "popup-fixed test",
         autoPan: false,
-    }).setContent(text);
+    }).setContent(text);*/
 
     marker.bindPopup(popup).on("click", fitBoundsPadding);
 });
@@ -246,4 +249,40 @@ function removeAllAnimationClassFromMap() {
 
     // back to default position
     map.setView([lat, lng], zoom);
+}
+
+
+function getmagasins(){
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'magasins'
+        },
+        dataType: "json",
+
+        success: function(response){
+                allmagasins  = response
+                console.log(response)
+            for (const element of allmagasins){
+                console.log(element["latitude"], element["longitude"])
+            }
+        }
+    });
+}
+
+function getproduits(){
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'produits',
+            id_magasin: 1
+        },
+        dataType: "json",
+
+        success: function(response){
+            console.log(response)
+        }
+    });
 }

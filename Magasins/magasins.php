@@ -1,6 +1,8 @@
 <?php
 
-function getMagasins(PDO $pdo) {
+function getMagasins() {
+    require('../connectSQL.php');
+
     try {
         // Préparation de la requête SQL
         $query = "SELECT * FROM Magasins";
@@ -19,31 +21,45 @@ function getMagasins(PDO $pdo) {
         die();
     }
 }
-
-// Exemple d'utilisation
-try {
+function getProduits($idMagasin) {
     require('../connectSQL.php');
 
+    try {
+        // Préparation de la requête SQL avec une condition WHERE pour filtrer par magasin
+        $query = "SELECT * FROM Produits WHERE id_magasin = :idMagasin";
+        $statement = $pdo->prepare($query);
 
-    // Appel de la fonction pour récupérer les magasins
-    $magasins = getMagasins($pdo);
+        // Remplacer :idMagasin par la valeur réelle du paramètre
+        $statement->bindParam(':idMagasin', $idMagasin, PDO::PARAM_INT);
 
-    // Affichage des résultats
-    if ($magasins) {
-        foreach ($magasins as $magasin) {
-            echo "ID: " . $magasin['id_magasin'] . "<br>";
-            echo "Nom du Magasin: " . $magasin['nom_magasin'] . "<br>";
-            echo "Adresse: " . $magasin['adresse'] . "<br>";
-            echo "Ville: " . $magasin['ville'] . "<br>";
-            echo "<hr>";
-        }
-    } else {
-        echo "Aucun magasin trouvé.";
+        // Exécution de la requête
+        $statement->execute();
+
+        // Récupération des résultats
+        $produits = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $produits;
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur : " . $e->getMessage();
+        return null;
     }
-} catch (PDOException $e) {
-    // Gestion des erreurs de connexion
-    echo "Erreur de connexion : " . $e->getMessage();
-    die();
+}
 
+if (isset($_POST['action'])){
+    $action = $_POST['action'];
+
+    switch ($action){
+        case 'magasins':
+            $resultat = getMagasins();
+            break;
+        case 'produits':
+            $resultat = getProduits($_POST['id_magasin']);
+            break;
+        default:
+            $resultat = "erreur";
+    }
+
+    echo json_encode($resultat);
 }
 
