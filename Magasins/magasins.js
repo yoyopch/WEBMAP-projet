@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /**
- * location
+ * popup in a fixed position
  */
 
 // config map
@@ -9,13 +9,31 @@ let config = {
     maxZoom: 18,
 };
 // magnification with which the map will start
-const zoom = 18;
-// co-ordinates
-const lat = 52.22977;
-const lng = 21.01178;
+const zoom = 13;
 
+let allmagasins
+
+
+
+
+
+
+
+
+
+
+
+
+// co-ordinates
+const lat = 48.8619029057891;
+const lng = 2.3469980436428877;
 // calling map
 const map = L.map("map", config).setView([lat, lng], zoom);
+
+
+
+
+// Location
 
 // Used to load and display tile layers on the map
 // Most tile servers require attribution, which you can set under `Layer`
@@ -37,11 +55,11 @@ map
         setView: true,
         enableHighAccuracy: true,
     })
-    // if location found show marker
+    // if location found show marker and circle
     .on("locationfound", (e) => {
         console.log(e);
         // marker
-        const marker = L.marker([e.latitude, e.longitude], { icon: p_icon });
+        const marker = L.marker([e.latitude, e.longitude], {icon: p_icon});
         // add marker
         map.addLayer(marker);
     })
@@ -51,9 +69,45 @@ map
         alert("Location access denied.");
     });
 
+var pane = map.createPane("fixed", document.getElementById("map"));
+
+
+
+
+
+
+
+
+//Fin geo loc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Used to load and display tile layers on the map
+
+
+
 // ------------------------------------------------
 
-// template svg icon
+
 const s_icon = L.icon({
     iconUrl: '../IMG/IMG_magasins/shop.png',
     className: "marker",
@@ -64,29 +118,79 @@ const s_icon = L.icon({
 
 const points = [
     {
-        lat: 48.8737952,
-        lng: 2.2924526,
-        text: "<h3>First popup 😀</h3><br>Grab the lower right corner and reduce the width of the map.",
+        //1er shop
+        lat: 48.848332017929664,
+        lng: 2.2823609014907467,
+        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
     },
     {
-        lat: 48.8583735,
-        lng: 2.2896104,
-        text: "<h3>Second popup 😀</h3><br>Grab the lower right corner and reduce the width of the map.",
+
+        //2eme shop
+        lat: 48.8619029057891,
+        lng: 2.3469980436428877,
+        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
     },
+    {
+        //3eme shop
+        lat: 48.842166115440094,
+        lng: 2.3219513969967904,
+        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
+    },
+    {
+        //4eme shop
+        lat: 48.867030098528645,
+        lng: 2.3635229276183733,
+        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
+    },
+    {
+        //5eme shop
+        lat: 48.87277569069737,
+        lng: 2.2972470477720544,
+        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
+    }
+
 ];
+
+function FruitsMagasin(idMagasin) {
+
+    //pour un idMagasin, il faut recuperer le fruit, et pour chaque fruit, son nom, son prix, le stock du fruit, le poids
+
+    //pour chaque fruit, il faut créer une div fruit item, en fonction
+
+
+    //pour chaque fruit d'un magasin, il faut appeler la fonction ajouterfruit en mettant en parametres le nom, prx, stock et description récuperé dans la bdd
+}
+
+function ajouterFruit(name, price, stock, desc){
+    return `
+        <div class="fruit-item">
+            <!--<img src="${imgPath}" alt="${name}" class="fruit-img" />-->
+            <div class="fruit-details">
+                <h3 class="fruit-name">${name}</h3>
+                <p class="fruit-price">${price}</p>
+                <p class="fruit-stock">${stock}</p>
+                <p class="fruit-desc">${desc}</p>
+            </div>
+        </div>
+    `;
+}
+
 
 points.map(({ lat, lng, text }) => {
     // create marker and add to map
-    const marker = L.marker([lat, lng], {
-        icon: s_icon,
-    }).addTo(map);
+
+    for (const element of allmagasins){
+        const marker = L.marker([element["latitude"], element["longitude"]], {
+            icon: s_icon,
+        }).addTo(map);
+    }
 
     // crewate popup, set contnet
-    const popup = L.popup({
+/*    const popup = L.popup({
         pane: "fixed",
         className: "popup-fixed test",
         autoPan: false,
-    }).setContent(text);
+    }).setContent(text);*/
 
     marker.bindPopup(popup).on("click", fitBoundsPadding);
 });
@@ -144,5 +248,41 @@ function removeAllAnimationClassFromMap() {
     });
 
     // back to default position
-    map.setView([e.latitude, e.longitude], zoom);
+    map.setView([lat, lng], zoom);
+}
+
+
+function getmagasins(){
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'magasins'
+        },
+        dataType: "json",
+
+        success: function(response){
+                allmagasins  = response
+                console.log(response)
+            for (const element of allmagasins){
+                console.log(element["latitude"], element["longitude"])
+            }
+        }
+    });
+}
+
+function getproduits(){
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'produits',
+            id_magasin: 1
+        },
+        dataType: "json",
+
+        success: function(response){
+            console.log(response)
+        }
+    });
 }
