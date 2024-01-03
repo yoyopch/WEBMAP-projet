@@ -13,7 +13,7 @@ const zoom = 13;
 
 let allmagasins
 
-
+let productbyid
 
 
 
@@ -57,7 +57,7 @@ map
     })
     // if location found show marker and circle
     .on("locationfound", (e) => {
-        console.log(e);
+        //console.log(e);
         // marker
         const marker = L.marker([e.latitude, e.longitude], {icon: p_icon});
         // add marker
@@ -65,7 +65,7 @@ map
     })
     // if error show alert
     .on("locationerror", (e) => {
-        console.log(e);
+        //console.log(e);
         alert("Location access denied.");
     });
 
@@ -85,6 +85,7 @@ var pane = map.createPane("fixed", document.getElementById("map"));
 
 
 
+window.addEventListener("load", getmagasins);
 
 
 
@@ -116,7 +117,7 @@ const s_icon = L.icon({
     popupAnchor: [0, -32], // Ajustez la position de la fenêtre contextuelle si nécessaire
 });
 
-const points = [
+/*const points = [
     {
         //1er shop
         lat: 48.848332017929664,
@@ -149,7 +150,7 @@ const points = [
         text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
     }
 
-];
+];*/
 
 function FruitsMagasin(idMagasin) {
 
@@ -161,39 +162,53 @@ function FruitsMagasin(idMagasin) {
     //pour chaque fruit d'un magasin, il faut appeler la fonction ajouterfruit en mettant en parametres le nom, prx, stock et description récuperé dans la bdd
 }
 
-function ajouterFruit(name, price, stock, desc){
-    return `
-        <div class="fruit-item">
-            <!--<img src="${imgPath}" alt="${name}" class="fruit-img" />-->
-            <div class="fruit-details">
-                <h3 class="fruit-name">${name}</h3>
-                <p class="fruit-price">${price}</p>
-                <p class="fruit-stock">${stock}</p>
-                <p class="fruit-desc">${desc}</p>
-            </div>
-        </div>
-    `;
+function ajouterFruit(id_magasin){
+    getproduits(id_magasin)
+
+    console.log(productbyid)
+    let html = '';
+    for (const element of productbyid) {
+        console.log(element)
+        html +=`
+                <div class="fruit-item">
+                    <img src={element.chemin_image} alt="test" class="fruit-img" />
+                    <div class="fruit-details">
+                        <h3 class="fruit-name">element["nom_produit"]</h3>
+                        <p class="fruit-price">element["prix"]</p>
+                        <p class="fruit-stock">element["stock"]</p>
+                        <p class="fruit-desc">element["description_produit"]</p>
+                    </div>
+                </div>
+            `;
+    }
+    //document.querySelector(".fruit").innerHTML(html)
+    console.log(html)
+   // return "r"
 }
 
 
-points.map(({ lat, lng, text }) => {
-    // create marker and add to map
-
+function addpoint (){
     for (const element of allmagasins){
         const marker = L.marker([element["latitude"], element["longitude"]], {
             icon: s_icon,
+            idmagsin: element["id_magasin"]
         }).addTo(map);
-    }
 
+    const id_magasin = marker["options"]["idmagsin"].toString()
     // crewate popup, set contnet
-/*    const popup = L.popup({
+
+    const popup = L.popup({
         pane: "fixed",
         className: "popup-fixed test",
         autoPan: false,
-    }).setContent(text);*/
+    }).setContent(ajouterFruit(id_magasin));
 
-    marker.bindPopup(popup).on("click", fitBoundsPadding);
-});
+
+    //console.log(marker["options"]["idmagsin"])
+   marker.bindPopup(popup).on("click", fitBoundsPadding);
+    }
+
+}
 
 // remove all animation class when popupclose
 map.on("popupclose", function (e) {
@@ -263,26 +278,24 @@ function getmagasins(){
 
         success: function(response){
                 allmagasins  = response
-                console.log(response)
-            for (const element of allmagasins){
-                console.log(element["latitude"], element["longitude"])
-            }
+                addpoint()
+
         }
     });
 }
 
-function getproduits(){
+function getproduits(id_magasin){
     $.ajax({
         type: "POST",
         url: "magasins.php",
         data: {
             action: 'produits',
-            id_magasin: 1
+            id_magasin: parseInt(id_magasin)
         },
         dataType: "json",
 
         success: function(response){
-            console.log(response)
+            productbyid =  response
         }
     });
 }
