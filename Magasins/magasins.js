@@ -169,7 +169,7 @@ function ajouterFruit(id_magasin, callback) {
         for (const element of response) {
             html += `
                 <div class="fruit-item">
-                    <img src="${element.chemin_image}" alt="test" class="fruit-img" />
+                    <img src=${element.chemin_image} alt="test" class="fruit-img" />
                     <div class="fruit-details">
                         <h3 class="fruit-name">${element.nom_produit}</h3>
                         <p class="fruit-price">${element.prix}</p>

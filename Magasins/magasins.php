@@ -1,5 +1,4 @@
 <?php
-
 function getMagasins() {
     require('../connectSQL.php');
 

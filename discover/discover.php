@@ -1,2 +1,2 @@
 <?php
-require('../discover/discover.tpl');
+require("discover.tpl");

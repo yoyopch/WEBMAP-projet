@@ -37,7 +37,7 @@
                         <p>ou</p>
                         <hr class="line">
                     </div>
-                <input type="button" value="Inscription" >
+                <a href="../register/register.php"><input type="button" value="Inscription" ></a>
             </form>
         </div>
     </div>
