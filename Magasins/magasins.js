@@ -162,28 +162,26 @@ function FruitsMagasin(idMagasin) {
     //pour chaque fruit d'un magasin, il faut appeler la fonction ajouterfruit en mettant en parametres le nom, prx, stock et description récuperé dans la bdd
 }
 
-function ajouterFruit(id_magasin){
-    getproduits(id_magasin)
-
-    console.log(productbyid)
+function ajouterFruit(id_magasin, callback) {
     let html = '';
-    for (const element of productbyid) {
-        console.log(element)
-        html +=`
+
+    getproduits(id_magasin, function(response) {
+        for (const element of response) {
+            html += `
                 <div class="fruit-item">
-                    <img src={element.chemin_image} alt="test" class="fruit-img" />
+                    <img src="${element.chemin_image}" alt="test" class="fruit-img" />
                     <div class="fruit-details">
-                        <h3 class="fruit-name">element["nom_produit"]</h3>
-                        <p class="fruit-price">element["prix"]</p>
-                        <p class="fruit-stock">element["stock"]</p>
-                        <p class="fruit-desc">element["description_produit"]</p>
+                        <h3 class="fruit-name">${element.nom_produit}</h3>
+                        <p class="fruit-price">${element.prix}</p>
+                        <p class="fruit-stock">${element.stock}</p>
+                        <p class="fruit-desc">${element.description_produit}</p>
                     </div>
                 </div>
             `;
-    }
-    //document.querySelector(".fruit").innerHTML(html)
-    console.log(html)
-   // return "r"
+        }
+
+        callback(html);
+    });
 }
 
 
@@ -201,10 +199,11 @@ function addpoint (){
         pane: "fixed",
         className: "popup-fixed test",
         autoPan: false,
-    }).setContent(ajouterFruit(id_magasin));
+    })
+    ajouterFruit(id_magasin, function(generatedHTML) {
+        popup.setContent(generatedHTML);
+    });
 
-
-    //console.log(marker["options"]["idmagsin"])
    marker.bindPopup(popup).on("click", fitBoundsPadding);
     }
 
@@ -284,7 +283,7 @@ function getmagasins(){
     });
 }
 
-function getproduits(id_magasin){
+function getproduits(id_magasin, callback) {
     $.ajax({
         type: "POST",
         url: "magasins.php",
@@ -294,8 +293,8 @@ function getproduits(id_magasin){
         },
         dataType: "json",
 
-        success: function(response){
-            productbyid =  response
+        success: function(response) {
+            callback(response);
         }
     });
 }
