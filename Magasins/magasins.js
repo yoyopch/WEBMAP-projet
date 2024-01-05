@@ -85,15 +85,18 @@ var pane = map.createPane("fixed", document.getElementById("map"));
 
 
 
-window.addEventListener("load", getmagasins);
+window.addEventListener("load", init);
 
 
 
 
 
-
-
-
+function init(){
+    getmagasins()
+}
+function test(id_produit){
+    console.log(id_produit)
+}
 
 
 
@@ -168,6 +171,7 @@ function ajouterFruit(id_magasin, callback) {
     getproduits(id_magasin, function(response) {
         for (const element of response) {
             html += `
+            <button class="custom-btn" onclick="test(${element.id_produit})">
                 <div class="fruit-item">
                     <img src=${element.chemin_image} alt="test" class="fruit-img" />
                     <div class="fruit-details">
@@ -175,13 +179,13 @@ function ajouterFruit(id_magasin, callback) {
                         <h5 class="fruit-name">${element.nom_produit} | ${element.description_produit}</h5>
                         <h5 class="fruit-stock">Stock ${element.stock}</h5>
                         </div>
-                        <p class="fruit-price">${element.prix}</p>
+                        <p class="fruit-price">${element.prix}€</p>
                     </div>
                     <div class="bulle-etats"></div>
                 </div>
+            </button>
             `;
         }
-
         callback(html);
     });
 }
@@ -199,7 +203,7 @@ function addpoint (){
 
     const popup = L.popup({
         pane: "fixed",
-        className: "popup-fixed test",
+        className: "popup-fixed",
         autoPan: false,
     })
     ajouterFruit(id_magasin, function(generatedHTML) {

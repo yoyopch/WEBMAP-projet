@@ -8,6 +8,5 @@
 <?php include('../Navbar/navbar.php'); ?>
 
 <body>
-    <h1>Bienvenue : <?php echo $nom ?></h1>
 </body>
 </html>

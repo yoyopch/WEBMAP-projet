@@ -61,8 +61,16 @@ body {
     border-radius: 0;
 }
 
+.custom-btn{
+    border: none;
+    background: none;
+    min-width: 376px;
+
+}
+
 .leaflet-popup-content {
     font-size: 16px;
+    min-width: 376px;
 
 }
 
@@ -87,6 +95,7 @@ body {
 }
 
 
+
 .fruit-item {
     display: flex;
     align-items: center;
@@ -96,6 +105,8 @@ body {
     border-radius: 34px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 0 0 5px 0;
+    padding: 12px;
+
 }
 
 .fruit-img {
@@ -109,8 +120,9 @@ body {
 .fruit-name-stock{
     display: flex;
     flex-direction: column;
-    padding: 10px 46px 0 0;
+    padding: 10px 81px 0 0;
     color: white;
+    align-items: flex-start;
 }
 
 .fruit-details {
