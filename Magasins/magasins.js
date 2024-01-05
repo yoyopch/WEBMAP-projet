@@ -171,11 +171,13 @@ function ajouterFruit(id_magasin, callback) {
                 <div class="fruit-item">
                     <img src=${element.chemin_image} alt="test" class="fruit-img" />
                     <div class="fruit-details">
-                        <h3 class="fruit-name">${element.nom_produit}</h3>
+                        <div class = "fruit-name-stock">
+                        <h5 class="fruit-name">${element.nom_produit} | ${element.description_produit}</h5>
+                        <h5 class="fruit-stock">Stock ${element.stock}</h5>
+                        </div>
                         <p class="fruit-price">${element.prix}</p>
-                        <p class="fruit-stock">${element.stock}</p>
-                        <p class="fruit-desc">${element.description_produit}</p>
                     </div>
+                    <div class="bulle-etats"></div>
                 </div>
             `;
         }

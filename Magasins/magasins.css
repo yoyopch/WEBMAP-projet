@@ -34,7 +34,10 @@ body {
     transform: none !important;
     margin: 0;
     border-radius: 0;
+    align-items: center;
 }
+
+
 
 @media (min-width: 700px) {
     .popup-fixed {
@@ -60,6 +63,7 @@ body {
 
 .leaflet-popup-content {
     font-size: 16px;
+
 }
 
 
@@ -86,24 +90,34 @@ body {
 .fruit-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
+    justify-content: space-around;
+    gap: 5px;
     background-color: black;
-    border-radius: 10px;
+    border-radius: 34px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 0 5px 0;
 }
 
 .fruit-img {
-    width: 50px;
-    height: 50px;
+    width: 27.82px;
+    height: 26.122px;
     object-fit: cover;
-    border-radius: 50%;
+    margin: 0 0 0 22px;
+
+}
+
+.fruit-name-stock{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 46px 0 0;
+    color: white;
 }
 
 .fruit-details {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 5px;
+    align-items: center;
 }
 
 .fruit-name {
@@ -112,8 +126,20 @@ body {
     font-weight: bold;
 }
 
+.fruit-stock{
+    margin: 0;
+}
+
 .fruit-price {
     margin: 0;
     font-size: 14px;
-    color: #999;
+    color: white;
+}
+.bulle-etats{
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    border-radius: 100px;
+    margin: 0 25px 0 0;
+
 }
