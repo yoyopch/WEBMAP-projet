@@ -15,4 +15,9 @@
     text-align: center;
     align-self: center;
 }
+#iconPanierIMG{
+    top: 20px;
+    position: absolute;
+    right: 100px;
+}
 
