@@ -1,4 +1,9 @@
 <?php
+
+if  (count($_POST)==0) {
+    require("magasins.tpl");
+}
+
 function getMagasins() {
     require('../connectSQL.php');
 
@@ -61,4 +66,3 @@ if (isset($_POST['action'])){
 
     echo json_encode($resultat);
 }
-
