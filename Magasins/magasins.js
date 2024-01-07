@@ -12,25 +12,13 @@ let config = {
 const zoom = 13;
 
 let allmagasins
-
 let productbyid
-
-
-
-
-
-
-
-
-
 
 // co-ordinates
 const lat = 48.8619029057891;
 const lng = 2.3469980436428877;
 // calling map
 const map = L.map("map", config).setView([lat, lng], zoom);
-
-
 
 
 // Location
@@ -72,10 +60,39 @@ map
 var pane = map.createPane("fixed", document.getElementById("map"));
 
 
+var customIcon = L.icon({
+    iconUrl: "../IMG/iconMonuments.png",
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
 
+fetch("liste-des-gares.json")
+    .then(response => response.json())
+    .then(data => {
+        // Utiliser un ensemble pour stocker les noms uniques des gares
+        var uniqueNames = new Set();
 
+        // Filtrer les gares en Île-de-France avec voyageurs "O" et de type TGV
+        var garesIDF_TGV = data.filter(gare => {
+            const departementsIDF = ["PARIS", "SEINE-ET-MARNE", "YVELINES", "ESSONNE", "HAUTS-DE-SEINE", "SEINE-SAINT-DENIS", "VAL-DE-MARNE", "VAL-D'OISE"];
+            const isIDF = departementsIDF.includes(gare.fields.departemen);
+             const name = gare.fields.libelle;
 
+            // Ajouter le nom au set et retourner true seulement si le nom est nouveau
+            return isIDF && !uniqueNames.has(name) && uniqueNames.add(name);
+        });
 
+        // Ajouter des marqueurs avec des icônes personnalisées pour chaque gare TGV en Île-de-France
+        garesIDF_TGV.forEach(gare => {
+            L.marker([gare.fields.geo_shape.coordinates[1], gare.fields.geo_shape.coordinates[0]], { icon: customIcon })
+                .addTo(map)
+                .bindPopup("<b>" + gare.fields.libelle + "</b><br>Commune: " + gare.fields.commune);
+        });
+    })
+    .catch(error => {
+        console.log("Erreur lors du chargement des données : ", error);
+    });
 
 
 //Fin geo loc
