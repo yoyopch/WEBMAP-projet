@@ -59,6 +59,7 @@ body {
 
 .leaflet-popup-content-wrapper {
     border-radius: 0;
+    padding-top: 120px;
 }
 
 .custom-btn{
