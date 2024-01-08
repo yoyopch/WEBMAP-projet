@@ -59,18 +59,21 @@ body {
 
 .leaflet-popup-content-wrapper {
     border-radius: 0;
+    padding-top: 120px;
 }
 
 .custom-btn{
     border: none;
     background: none;
     min-width: 376px;
-
 }
 
 .leaflet-popup-content {
     font-size: 16px;
     min-width: 376px;
+    margin-left: auto;
+    margin-right: auto;
+
 
 }
 

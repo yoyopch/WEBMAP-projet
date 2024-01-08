@@ -7,9 +7,11 @@
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
     />
-    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+
+
     <link rel="stylesheet" href="magasins.css"/>
 
 
