@@ -13,17 +13,37 @@
 
 
     <link rel="stylesheet" href="magasins.css"/>
-
-
-
-
     <link rel="stylesheet" href="../Navbar/navbar.css">
 
 </head>
 <?php include('../Navbar/navbar.php'); ?>
 <body>
-<div id="map"></div>
+<button class="btn_panier" id="btn_panier">
+    <img src="../IMG/IMG_magasins/shop.png"/>
+</button>
+<div id="popup" class="hide">
+    <form method="POST">
+        <h2>Votre panier</h2>
+        <div class="info_panier">
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
+            <p>Poire BIO</p>
+            <p>1,99 €</p>
+            <p>1</p>
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
+        </div>
+        <div class="info_panier">
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
+            <p>Poire BIO</p>
+            <p>1,99 €</p>
+            <p>1</p>
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
+        </div>
+    </form>
 
+    <button class="btn_valider" id="btn_valider">Valider le panier</button>
+</div>
+
+<div id="map"></div>
 
 <script src="magasins.js">
 

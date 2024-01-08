@@ -156,5 +156,57 @@ body {
     background-color: green;
     border-radius: 100px;
     margin: 0 25px 0 0;
+}
+
+.btn_panier {
+    border-radius: 30%;
+    position:fixed;
+    bottom:1%;
+    left:1%;
+    z-index: 9999
+}
+
+#popup{
+    width: 30%;
+    height: 75%;
+    left: 5%;
+    bottom: 8%;
+    position: absolute;
+    display: none;
+    z-index: 9998;
+    border: 3px solid black;
+    background: white;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.info_panier {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5%;
+    padding: 3%;
+    border: 2px solid black;
+}
+
+p {
+    font-size: 110%;
+    margin: auto;
+    padding-top: 5%;
+}
+
+.btn_valider {
+    width: 80%;
+    height: 10%;
+    font-weight: bold;
+    background: saddlebrown;
+    color: #FBFCFB;
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
 
 }

@@ -123,7 +123,29 @@ function test(id_produit){
 
 
 // Used to load and display tile layers on the map
+// ------------------------------------------------
 
+var popup = document.getElementById("popup")
+function hidePopupClass(){
+    popup.className = "show"
+    popup.style.display = "block"
+}
+function showPopupClass(){
+    popup.className = "hide"
+    popup.style.display = "none"
+}
+btn_panier.addEventListener("click" , function(){
+    switch(popup.className){
+        case "hide":
+            hidePopupClass()
+            break
+        case "show":
+            showPopupClass()
+            break
+        default:
+            alert("Ne modifier pas le code svp")
+    }
+})
 
 
 // ------------------------------------------------
