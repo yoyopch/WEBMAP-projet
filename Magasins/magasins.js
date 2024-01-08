@@ -1,3 +1,4 @@
+
 /* eslint-disable no-undef */
 /**
  * popup in a fixed position
@@ -73,22 +74,29 @@ fetch("liste-des-gares.json")
         // Utiliser un ensemble pour stocker les noms uniques des gares
         var uniqueNames = new Set();
 
-        // Filtrer les gares en Île-de-France avec voyageurs "O" et de type TGV
-        var garesIDF_TGV = data.filter(gare => {
+        // Créer un groupe de clusters de marqueurs
+        let markers = L.markerClusterGroup();
+
+        // Ajouter les marqueurs avec des icônes personnalisées pour chaque gare TGV en Île-de-France
+        data.forEach(gare => {
             const departementsIDF = ["PARIS", "SEINE-ET-MARNE", "YVELINES", "ESSONNE", "HAUTS-DE-SEINE", "SEINE-SAINT-DENIS", "VAL-DE-MARNE", "VAL-D'OISE"];
             const isIDF = departementsIDF.includes(gare.fields.departemen);
-             const name = gare.fields.libelle;
+            const name = gare.fields.libelle;
 
-            // Ajouter le nom au set et retourner true seulement si le nom est nouveau
-            return isIDF && !uniqueNames.has(name) && uniqueNames.add(name);
+            if (isIDF && !uniqueNames.has(name)) {
+                // Ajouter le nom au set pour éviter les doublons
+                uniqueNames.add(name);
+
+                // Ajouter le marqueur au groupe de clusters
+                let marker = L.marker([gare.fields.geo_shape.coordinates[1], gare.fields.geo_shape.coordinates[0]], { icon: customIcon })
+                    .bindPopup("<b>" + gare.fields.libelle + "</b><br>Commune: " + gare.fields.commune);
+
+                markers.addLayer(marker);
+            }
         });
 
-        // Ajouter des marqueurs avec des icônes personnalisées pour chaque gare TGV en Île-de-France
-        garesIDF_TGV.forEach(gare => {
-            L.marker([gare.fields.geo_shape.coordinates[1], gare.fields.geo_shape.coordinates[0]], { icon: customIcon })
-                .addTo(map)
-                .bindPopup("<b>" + gare.fields.libelle + "</b><br>Commune: " + gare.fields.commune);
-        });
+        // Ajouter le groupe de clusters à la carte
+        map.addLayer(markers);
     })
     .catch(error => {
         console.log("Erreur lors du chargement des données : ", error);

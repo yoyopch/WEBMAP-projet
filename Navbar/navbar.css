@@ -16,8 +16,9 @@
     align-self: center;
 }
 #iconPanierIMG{
-    top: 20px;
+    height: 40px;
+    top: 25px;
     position: absolute;
-    right: 100px;
+    right: 90px;
 }
 
