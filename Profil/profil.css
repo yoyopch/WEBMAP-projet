@@ -1,0 +1,76 @@
+body {
+    background-image: url("../IMG/login_img.svg");
+    background-size: 50%;
+
+    .blank {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        background: white;
+        padding: 0.5% 2%;
+    }
+
+.infos_profil{
+    display: flex;
+    flex-direction: row;
+    margin-left: 15%;
+    padding: 5%;
+}
+
+.nom {
+    font-size: 200%;
+    margin-top: 8%;
+    margin-left: 8%;
+
+}
+
+.block_commande{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 17px;
+    padding: 0.5% 2%;
+}
+
+.txt_titre_commande{
+    font-size: 200%;
+    margin-left: 13%;
+}
+
+.txt_commande{
+    font-size: 200%;
+    padding: 3%;
+}
+
+.etat_commande{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    border-radius: 90px;
+    padding: 1.5% 6%;
+}
+
+.txt_etat{
+    color: #FFFFFF;
+    font-size: 150%;
+}
+
+.block_voir_commande{
+    display: flex;
+    flex-direction: row;
+
+}
+
+    input[type="button"]{
+        position: absolute;
+        right: 27%;
+        font-size: 150%;
+        color: #FFFFFF;
+        margin: auto;
+        background-color: green;
+        border-radius: 90px;
+        padding: 1% 1% 1% 1%
+
+}
