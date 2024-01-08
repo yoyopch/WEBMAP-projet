@@ -16,7 +16,7 @@
 		}
 		else {
 			$_SESSION['profil'] = $p;
-			$url = "../accueil.php";
+			$url = "..Magasins/magasins.php";
 			header("Location:" . $url) ;
 		}
 	}	
