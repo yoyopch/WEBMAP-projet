@@ -124,8 +124,13 @@ function test(id_produit){
 }
 
 
-
-
+const btnFruits = document.querySelector(".custom-btn");
+btnFruits.addEventListener("mouseover", function(){
+    this.style("border-box","0px 0px 24px 5px rgba(0,0,0,0.44)");
+})
+btnFruits.addEventListener("mouseout", function(){
+    this.style("border-box","none");
+})
 
 
 
