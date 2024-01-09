@@ -29,7 +29,6 @@
 
 <!--bootstrap Navbar-->
 <nav class="navbar ">
-    <a><img id="iconPanierIMG" src="../IMG/iconPanier.svg" alt="iconPanier"></a>
     <div class="container-fluid">
         <a class="navbar-brand" href="../Magasins/magasins.php"> <img src="../IMG/logo-site.svg"> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
