@@ -124,13 +124,6 @@ function test(id_produit){
 }
 
 
-const btnFruits = document.querySelector(".custom-btn");
-btnFruits.addEventListener("mouseover", function(){
-    this.style("border-box","0px 0px 24px 5px rgba(0,0,0,0.44)");
-})
-btnFruits.addEventListener("mouseout", function(){
-    this.style("border-box","none");
-})
 
 
 
@@ -147,7 +140,7 @@ function showPopupClass(){
     popup.className = "hide"
     popup.style.display = "none"
 }
-btn_panier.addEventListener("click" , function(){
+document.querySelector(".btn_panier").addEventListener("click" , function(){
     switch(popup.className){
         case "hide":
             hidePopupClass()
@@ -241,6 +234,10 @@ function ajouterFruit(id_magasin, callback) {
         callback(html);
     });
 }
+
+document.querySelector(".fruit-item").addEventListener("click",function (){
+
+})
 
 
 function addpoint (){
