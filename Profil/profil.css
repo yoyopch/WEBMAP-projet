@@ -65,13 +65,12 @@ body {
 
 }
 
-    input[type="button"]{
-        position: absolute;
-        right: 27%;
-        font-size: 150%;
-        color: #FFFFFF;
-        background-color: green;
-        border-radius: 90px;
-        padding: 1% 1% 1% 1%;
-
+input[type="button"] {
+    position: absolute;
+    right: 27%;
+    font-size: 150%;
+    color: #FFFFFF;
+    background-color: green;
+    border-radius: 90px;
+    padding: 1% 1% 1% 1%;
 }
