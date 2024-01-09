@@ -1,7 +1,6 @@
 <?php
 	session_start();
-	error_reporting(E_ALL);
-	ini_set('display_errors', 1);
+    $_SESSION['profil']['isConnected'] = false;
 
 	$email =  isset($_POST['email'])?($_POST['email']):'';
 	$password =  isset($_POST['password'])?($_POST['password']):'';
@@ -11,14 +10,17 @@
 	require("../login/login.tpl");
     else {
 		if  (!verifInfo($email,$password,$p)) {
+            $_SESSION['profil']['isConnected'] = true;
 			$msg ="Erreur de saisie OU utilisateur inconnu";
 			require("../login/login.tpl");
 		}
 		else {
 			$_SESSION['profil'] = $p;
-			$url = "..Magasins/magasins.php";
+			$url = "../Magasins/magasins.php";
 			header("Location:" . $url) ;
-		}
+            $_SESSION['profil']['isConnected'] = true;
+
+        }
 	}	
 
 	function verifInfo($nom,$num,&$profil = array()) {

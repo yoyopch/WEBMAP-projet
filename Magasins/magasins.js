@@ -124,14 +124,6 @@ function test(id_produit){
 }
 
 
-const btnFruits = document.querySelector(".custom-btn");
-btnFruits.addEventListener("mouseover", function(){
-    this.style("border-box","0px 0px 24px 5px rgba(0,0,0,0.44)");
-})
-btnFruits.addEventListener("mouseout", function(){
-    this.style("border-box","none");
-})
-
 
 
 
@@ -150,8 +142,13 @@ function showPopupClass(){
 btn_panier.addEventListener("click" , function(){
     switch(popup.className){
         case "hide":
-            if (isConnected()){
-            hidePopupClass()}
+            isConnected(function(reponse){
+                console.log(reponse)
+                if (reponse) {
+
+                    hidePopupClass()
+                }
+            })
             break
         case "show":
             showPopupClass()
@@ -365,26 +362,18 @@ function addInCart(Product,Id_magasin){
 function getCart(){
 }
 
-function isConnected(){
-    let ret
-/*    $.ajax({
+function isConnected(callback){
+    $.ajax({
         type: "POST",
         url: "magasins.php",
         data: {
-            action: 'produits',
-            id_magasin: parseInt(id_magasin)
+            action: 'isconencted',
         },
         dataType: "json",
-        async: false,
 
         success: function(response) {
-            ret = response;
-        },
-        error : function(response) {
-            ret =  false;
+            callback(response);
         }
-    });*/
-    ret = false
-    return ret
+    });
 }
 
