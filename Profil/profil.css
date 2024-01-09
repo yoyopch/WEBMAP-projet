@@ -10,17 +10,17 @@ body {
         padding: 0.5% 2%;
     }
 
+
 .infos_profil{
     display: flex;
     flex-direction: row;
-    margin-left: 15%;
+    margin-left: 10%;
     padding: 5%;
 }
 
 .nom {
     font-size: 200%;
-    margin-top: 8%;
-    margin-left: 8%;
+    margin-top: 5%;
 
 }
 
@@ -28,6 +28,7 @@ body {
     width: 75%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     border-radius: 17px;
     padding: 0.5% 2%;
@@ -44,12 +45,13 @@ body {
 }
 
 .etat_commande{
-    width: 75%;
+    width: 73%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 6%;
     background-color: black;
     border-radius: 90px;
-    padding: 1.5% 6%;
+    padding: 1.5% 7%;
 }
 
 .txt_etat{
@@ -68,9 +70,8 @@ body {
         right: 27%;
         font-size: 150%;
         color: #FFFFFF;
-        margin: auto;
         background-color: green;
         border-radius: 90px;
-        padding: 1% 1% 1% 1%
+        padding: 1% 1% 1% 1%;
 
 }
