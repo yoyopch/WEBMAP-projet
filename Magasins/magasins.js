@@ -143,7 +143,8 @@ function showPopupClass(){
 document.querySelector(".btn_panier").addEventListener("click" , function(){
     switch(popup.className){
         case "hide":
-            hidePopupClass()
+            if (isConnected()){
+            hidePopupClass()}
             break
         case "show":
             showPopupClass()
@@ -353,3 +354,34 @@ function getproduits(id_magasin, callback) {
         }
     });
 }
+
+
+function addInCart(Product,Id_magasin){
+}
+
+function getCart(){
+}
+
+function isConnected(){
+    let ret
+/*    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'produits',
+            id_magasin: parseInt(id_magasin)
+        },
+        dataType: "json",
+        async: false,
+
+        success: function(response) {
+            ret = response;
+        },
+        error : function(response) {
+            ret =  false;
+        }
+    });*/
+    ret = false
+    return ret
+}
+
