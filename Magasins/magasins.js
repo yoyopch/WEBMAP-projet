@@ -128,8 +128,6 @@ function test(id_produit){
 
 
 
-
-
 // Used to load and display tile layers on the map
 // ------------------------------------------------
 
@@ -142,10 +140,11 @@ function showPopupClass(){
     popup.className = "hide"
     popup.style.display = "none"
 }
-btn_panier.addEventListener("click" , function(){
+document.querySelector(".btn_panier").addEventListener("click" , function(){
     switch(popup.className){
         case "hide":
-            hidePopupClass()
+            if (isConnected()){
+            hidePopupClass()}
             break
         case "show":
             showPopupClass()
@@ -236,6 +235,10 @@ function ajouterFruit(id_magasin, callback) {
         callback(html);
     });
 }
+
+document.querySelector(".fruit-item").addEventListener("click",function (){
+
+})
 
 
 function addpoint (){
@@ -351,3 +354,34 @@ function getproduits(id_magasin, callback) {
         }
     });
 }
+
+
+function addInCart(Product,Id_magasin){
+}
+
+function getCart(){
+}
+
+function isConnected(){
+    let ret
+/*    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'produits',
+            id_magasin: parseInt(id_magasin)
+        },
+        dataType: "json",
+        async: false,
+
+        success: function(response) {
+            ret = response;
+        },
+        error : function(response) {
+            ret =  false;
+        }
+    });*/
+    ret = false
+    return ret
+}
+

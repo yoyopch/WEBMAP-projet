@@ -15,8 +15,11 @@ html,
 #map {
     width: 100%;
     height: 100%;
+    position: fixed;
 }
-
+.fruit-item:hover{
+    box-shadow: 0 0 24px 5px rgba(0,0,0,0.44);
+}
 body {
     position: relative;
     min-height: 100%;
