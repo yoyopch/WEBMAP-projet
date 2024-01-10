@@ -57,6 +57,49 @@ session_start();
         }
     }
 
+
+    function addInCart($product,$magasin){
+        require('../connectSQL.php');
+
+        try {
+            // Préparation de la requête SQL avec une condition WHERE pour filtrer par magasin
+            $query = "SELECT * FROM Produits WHERE id_magasin = :idMagasin and id_produit = :idproduit ";
+            $statement = $pdo->prepare($query);
+
+            $statement->bindParam(':idMagasin', $magasin, PDO::PARAM_INT);
+            $statement->bindParam(':idproduit', $product, PDO::PARAM_INT);
+            $statement->execute();
+
+            $produits = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($produits[0]['stock']>0){
+                if (isset($_SESSION['profil']['isConnected']) && $_SESSION['profil']['isConnected'] === true) {
+                    if (!isset($_SESSION['profil']['cart'])) {
+                        $_SESSION['profil']['cart'] = array();
+                    }
+                    $produitToAdd = array('Produit' => $produits, 'quantite' => 0);
+                    $key = array_search($produitToAdd['Produit'], array_column($_SESSION['profil']['cart'], 'Produit'));
+                    if ($key !== false) {
+                        $_SESSION['profil']['cart'][$key]['quantite'] += 1;
+                    } else {
+                        $produitToAdd['quantite'] = 1;
+                        $_SESSION['profil']['cart'][] = $produitToAdd;
+                    }
+
+                    return  true;
+                }else{
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            // Gestion des erreurs
+            echo "Erreur : " . $e->getMessage();
+            return null;
+        }
+    }
+
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
@@ -74,6 +117,12 @@ session_start();
                 }else{
                     $resultat = false;
                 }
+                break;
+            case 'addincart':
+                $resultat = addInCart($_POST['product'],$_POST['magasin']);
+                break;
+            case 'getcart':
+                $resultat = $_SESSION['profil']['cart'];
                 break;
             default:
                 $resultat = "erreur";
