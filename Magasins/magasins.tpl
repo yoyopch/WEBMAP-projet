@@ -28,8 +28,19 @@
 <div id="popup" class="hide">
     <form method="POST">
         <h2>Votre panier</h2>
-        <div class = "put-product-here">
-
+        <div class="info_panier">
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
+            <p>Poire BIO</p>
+            <p>1,99 €</p>
+            <p>1</p>
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
+        </div>
+        <div class="info_panier">
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
+            <p>Poire BIO</p>
+            <p>1,99 €</p>
+            <p>1</p>
+            <img src="../IMG/IMG_magasins/Pear.svg"/>
         </div>
     </form>
 
