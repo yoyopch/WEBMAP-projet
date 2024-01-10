@@ -13,7 +13,7 @@ let config = {
 const zoom = 13;
 
 let allmagasins
-let productbyid
+let cart
 
 // co-ordinates
 const lat = 48.8619029057891;
@@ -119,18 +119,8 @@ window.addEventListener("load", init);
 function init(){
     getmagasins()
 }
-function test(id_produit){
-    console.log(id_produit)
-}
 
 
-const btnFruits = document.querySelector(".custom-btn");
-btnFruits.addEventListener("mouseover", function(){
-    this.style("border-box","0px 0px 24px 5px rgba(0,0,0,0.44)");
-})
-btnFruits.addEventListener("mouseout", function(){
-    this.style("border-box","none");
-})
 
 
 
@@ -150,7 +140,12 @@ function showPopupClass(){
 btn_panier.addEventListener("click" , function(){
     switch(popup.className){
         case "hide":
-            hidePopupClass()
+            isConnected(function(reponse){
+                if (reponse) {
+                    getCart()
+                    hidePopupClass()
+                }
+            })
             break
         case "show":
             showPopupClass()
@@ -223,7 +218,7 @@ function ajouterFruit(id_magasin, callback) {
     getproduits(id_magasin, function(response) {
         for (const element of response) {
             html += `
-            <button class="custom-btn" onclick="test(${element.id_produit})">
+            <button class="custom-btn" onclick="addInCart(${element.id_produit},${element.id_magasin})">
                 <div class="fruit-item">
                     <img src=${element.chemin_image} alt="test" class="fruit-img" />
                     <div class="fruit-details">
@@ -352,7 +347,78 @@ function getproduits(id_magasin, callback) {
         dataType: "json",
 
         success: function(response) {
+            callback(response,id_magasin);
+        }
+    });
+}
+
+
+function addInCart(Product,Id_magasin){
+   //d console.log(Product,Id_magasin)
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'addincart',
+            product: parseInt(Product),
+            magasin: parseInt(Id_magasin)
+        },
+        dataType: "json",
+
+        success: function(response){
+            console.log(response)
+        }
+    });
+}
+
+function getCart(){
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'getcart',
+        },
+        dataType: "json",
+
+        success: function(response){
+            cart = response;
+            if (cart != null){
+                let html
+                for (const element of cart) {
+                    const produits = element.Produit;
+                    const quantite = element.quantite;
+
+                    for (const produit of produits) {
+                        html += `
+                                    <div class="info_panier">
+                                        <img src=${produit.chemin_image}>
+                                        <p>${produit.nom_produit}</p>
+                                        <p>${produit.prix}</p>
+                                        <p>${quantite}</p>
+                                        <img src="../IMG/IMG_magasins/Pear.svg"/>
+                                    </div>
+                                `
+                    }
+                }
+                console.log(html)
+                document.querySelector('.put-product-here').innerHTML = html
+            }
+        }
+    });
+}
+
+function isConnected(callback){
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'isconencted',
+        },
+        dataType: "json",
+
+        success: function(response) {
             callback(response);
         }
     });
 }
+
