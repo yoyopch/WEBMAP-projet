@@ -164,7 +164,9 @@ body {
     position:fixed;
     bottom:1%;
     left:1%;
-    z-index: 9999
+    z-index: 9999;
+    height: 9%;
+    width: 5%;
 }
 
 #popup{
@@ -194,10 +196,15 @@ h2 {
     border: 2px solid black;
 }
 
+
 p {
     font-size: 110%;
     margin: auto;
     padding-top: 5%;
+}
+
+.btn_poubelle {
+    padding-top: 4%;
 }
 
 .btn_valider {

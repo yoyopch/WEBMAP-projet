@@ -23,7 +23,7 @@
 <?php include('../Navbar/navbar.php'); ?>
 <body>
 <button class="btn_panier" id="btn_panier">
-    <img src="../IMG/IMG_magasins/shop.png"/>
+    <img src="../IMG/iconPanier.svg"/>
 </button>
 <div id="popup" class="hide">
     <form method="POST">
@@ -33,14 +33,14 @@
             <p>Poire BIO</p>
             <p>1,99 €</p>
             <p>1</p>
-            <img src="../IMG/IMG_magasins/Pear.svg"/>
+            <input type="image" class="btn_poubelle" id="btn_poubelle" src="../IMG/IMG_magasins/poubelle.png" width=8% height=10%/></input>
         </div>
         <div class="info_panier">
             <img src="../IMG/IMG_magasins/Pear.svg"/>
             <p>Poire BIO</p>
             <p>1,99 €</p>
             <p>1</p>
-            <img src="../IMG/IMG_magasins/Pear.svg"/>
+            <input type="image" class="btn_poubelle" id="btn_poubelle" src="../IMG/IMG_magasins/poubelle.png" width=8% height=10%/></input>
         </div>
     </form>
 
