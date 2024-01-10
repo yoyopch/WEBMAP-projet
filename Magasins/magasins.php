@@ -8,6 +8,10 @@ session_start();
         require("magasins.tpl");
     }
 
+    if (!isset($_SESSION['profil']['cart'])) {
+        $_SESSION['profil']['cart'] = array();
+    }
+
     function getMagasins()
     {
         require('../connectSQL.php');
@@ -74,9 +78,7 @@ session_start();
 
             if ($produits[0]['stock']>0){
                 if (isset($_SESSION['profil']['isConnected']) && $_SESSION['profil']['isConnected'] === true) {
-                    if (!isset($_SESSION['profil']['cart'])) {
-                        $_SESSION['profil']['cart'] = array();
-                    }
+
                     $produitToAdd = array('Produit' => $produits, 'quantite' => 0);
                     $key = array_search($produitToAdd['Produit'], array_column($_SESSION['profil']['cart'], 'Produit'));
                     if ($key !== false) {

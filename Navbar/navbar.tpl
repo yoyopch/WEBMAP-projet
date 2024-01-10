@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="../Navbar/navbar.js"></script>
 
 </head>
 
@@ -52,7 +52,7 @@
                     </li>
                 </ul>
                 <form action="../login/login.php" class="d-flex mt-3" role="search">
-                    <button class="btn btn-outline-success btnLogin" type="submit">Login</a></button>
+                    <button class="btn btn-outline-success btnLogin" type="submit" id="btn_login" >Login</a></button>
                 </form>
             </div>
         </div>

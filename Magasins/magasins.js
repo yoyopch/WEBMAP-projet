@@ -256,8 +256,11 @@ function addpoint (){
     ajouterFruit(id_magasin, function(generatedHTML) {
         popup.setContent(generatedHTML);
     });
-
-   marker.bindPopup(popup).on("click", fitBoundsPadding);
+        isConnected(function(reponse){
+            if (reponse) {
+                marker.bindPopup(popup).on("click", fitBoundsPadding);
+            }
+        })
     }
 
 }
@@ -400,7 +403,6 @@ function getCart(){
                                 `
                     }
                 }
-                console.log(html)
                 document.querySelector('.put-product-here').innerHTML = html
             }
         }
