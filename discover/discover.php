@@ -1,2 +1,3 @@
 <?php
-require("discover.tpl");
+session_start();
+require("../discover/discover.tpl");

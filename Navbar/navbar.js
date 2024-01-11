@@ -30,21 +30,21 @@ function init(){
                 btnprofil.innerHTML = ``
                 msgwelcome.style.display = "none"
             }
-        },)
+        })
     })
 }
 
-function isConnectedNav(callback,test){
+function isConnectedNav(callback){
     $.ajax({
         type: "POST",
-        url: "magasins.php",
+        url: "../Magasins/magasins.php",
         data: {
             action: 'isconenctedNav',
         },
         dataType: "json",
 
         success: function(response) {
-                callback(response);
+            callback(response);
         }
     });
 }
