@@ -75,10 +75,11 @@ h1 {
 }
 
 .txt_etat{
+    margin-top: 1%;
     margin-left: 5%;
     color: #FFFFFF;
     font-weight: bold;
-    font-size: 100%;
+    font-size: 150%;
 }
 
 input[type="button"] {
