@@ -30,14 +30,14 @@ function init(){
                 btnprofil.innerHTML = ``
                 msgwelcome.style.display = "none"
             }
-        })
+        },)
     })
 }
 
-function isConnectedNav(callback){
+function isConnectedNav(callback,test){
     $.ajax({
         type: "POST",
-        url: "../Magasins/magasins.php",
+        url: "magasins.php",
         data: {
             action: 'isconenctedNav',
         },

@@ -1,7 +1,6 @@
 body {
     background-image: url("../IMG/login_img.svg");
     background-size: 50%;
-    font-family: 'Arial', sans-serif;
 }
 
 .blank {
@@ -12,84 +11,67 @@ body {
     padding: 0.5% 2%;
 }
 
-.titleProfil {
-    text-align: center;
-    margin-bottom: 3%;
-}
-
-h1 {
-    font-size: 300%;
-}
 
 .infos_profil{
-    width: 50%;
     display: flex;
     flex-direction: row;
-    margin-left: 10.5%;
-    border-radius: 17px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    padding-top: 2%;
-    margin-bottom: 3%;
+    margin-left: 10%;
+    padding: 5%;
 }
 
-.photo_profil {
-    margin-left: 5%;
-}
-
-.txt_titre_commande {
-    margin-top: 3%;
+.nom {
     font-size: 200%;
-    font-weight: bold;
-    margin-bottom: 8%;
+    margin-top: 5%;
+
 }
 
-.block_commande {
+.block_commande{
     width: 75%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     border-radius: 17px;
     padding: 0.5% 2%;
 }
 
-.txt_commande {
-    margin-left: 5%;
+.txt_titre_commande{
+    font-size: 200%;
+    margin-left: 13%;
+}
+
+.txt_commande{
+    font-size: 200%;
+    padding: 3%;
+}
+
+.etat_commande{
+    width: 73%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6%;
+    background-color: black;
+    border-radius: 90px;
+    padding: 1.5% 7%;
+}
+
+.txt_etat{
+    color: #FFFFFF;
     font-size: 150%;
 }
 
-.etat_commande {
+.block_voir_commande{
     display: flex;
     flex-direction: row;
-    margin-left: 5%;
-}
 
-.block_voir_commande {
-    display: flex;
-    flex-direction: row;
-    background: black;
-    border-radius: 90px;
-    width: 95%;
-    height: 50px;
-    margin-bottom: 5%;
-}
-
-.txt_etat {
-    margin-left: 5%;
-    color: #FFFFFF;
-    font-weight: bold;
-    font-size: 100%;
 }
 
 input[type="button"] {
-    width: 10%;
-    height: 50px;
     position: absolute;
-    right: 24.75%;
-    font-weight: bold;
-    font-size: 85%;
+    right: 27%;
+    font-size: 150%;
     color: #FFFFFF;
     background-color: green;
     border-radius: 90px;
-    border: none;
+    padding: 1% 1% 1% 1%;
 }

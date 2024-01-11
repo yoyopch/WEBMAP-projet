@@ -12,34 +12,27 @@
 
 <body>
 <div class="blank">
-    <div class="titleProfil">
-        <h1>Bienvenue sur votre profil !</h1>
-    </div>
     <div class="infos_profil">
-        <div class="photo_profil"> <img src="../IMG/Profil/pp.jpg" style="border-radius: 50%; width: 40%; height: 80%"></div>
-        <div class="nom">
-            <h3>Nom : <?php echo($_SESSION['profil']['nom'])?> <br>Prénom : <?php echo($_SESSION['profil']['prenom'])?></h3>
-            <p>Ici, vous pouvez consulter vos commandes !</p>
-        </div>
+        <div class="photo_profil"> <img src="../IMG/Profil/pp.jpg" style="border-radius: 50%; width: 75%; height: 100%"></div>
+        <div class="nom"><p>Nom : <?php echo($_SESSION['profil']['nom'])?> <br>Prénom : <?php echo($_SESSION['profil']['prenom'])?></p></div>
     </div>
-    <div class="block_commande">
-        <div class="txt_titre_commande">
-            <p>Vos commandes :</p>
-        </div>
-        <div class="txt_commande"<p>Commandes en cours :</p></div>
+    <div class="txt_titre_commande"<p>COMMANDES :</p></div>
+<div class="block_commande">
+    <div class="txt_commande"<p>En cours</p></div>
+
     <div class="etat_commande">
         <div class="block_voir_commande">
-            <div class="txt_etat"><p>ID #1</p></div>
+            <div class="txt_etat"><p>ID#1</p></div>
             <input type="button" value="Voir la commande">
         </div>
     </div>
 
-    <div class="txt_commande"<p>Commandes terminées :</p></div>
-<div class="etat_commande">
-    <div class="block_voir_commande">
-        <div class="txt_etat"><p>ID #2</p></div>
-        <input type="button" value="Voir la commande">
-    </div>
+    <div class="txt_commande"<p>Terminées</p></div>
+    <div class="etat_commande">
+        <div class="block_voir_commande">
+            <div class="txt_etat"><p>ID#1</p></div>
+            <input type="button" value="Voir la commande">
+        </div>
 </div>
 
 </div>
