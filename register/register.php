@@ -19,7 +19,7 @@ else {
     }
 }
 
-function inscription($nom, $prenom, $email, $phone, $password){
+function inscription($nom, $prenom, $email, $phone, $ps){
     $newphone = "+33".$phone;
     require('../connectSQL.php');
     $sql = "INSERT INTO utilisateur (nom, prenom, email, phone, password) VALUES (:nom, :prenom, :email, :phone, :password)";
@@ -29,7 +29,7 @@ function inscription($nom, $prenom, $email, $phone, $password){
         $commande->bindParam(':prenom', $prenom);
         $commande->bindParam(':email', $email);
         $commande->bindParam(':phone', $newphone);
-        $commande->bindParam(':password',  password_hash($password, PASSWORD_DEFAULT));
+        $commande->bindParam(':password',  password_hash($ps, PASSWORD_DEFAULT));
 
         $bool = $commande->execute();
         if ($bool) {
