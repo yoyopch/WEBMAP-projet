@@ -189,50 +189,7 @@ const s_icon = L.icon({
     popupAnchor: [0, -32], // Ajustez la position de la fenêtre contextuelle si nécessaire
 });
 
-/*const points = [
-    {
-        //1er shop
-        lat: 48.848332017929664,
-        lng: 2.2823609014907467,
-        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
-    },
-    {
 
-        //2eme shop
-        lat: 48.8619029057891,
-        lng: 2.3469980436428877,
-        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
-    },
-    {
-        //3eme shop
-        lat: 48.842166115440094,
-        lng: 2.3219513969967904,
-        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
-    },
-    {
-        //4eme shop
-        lat: 48.867030098528645,
-        lng: 2.3635229276183733,
-        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
-    },
-    {
-        //5eme shop
-        lat: 48.87277569069737,
-        lng: 2.2972470477720544,
-        text: ajouterFruit('Cerise', '1kg 10 €', '../IMG/emojiCerice.svg'),
-    }
-
-];*/
-
-function FruitsMagasin(idMagasin) {
-
-    //pour un idMagasin, il faut recuperer le fruit, et pour chaque fruit, son nom, son prix, le stock du fruit, le poids
-
-    //pour chaque fruit, il faut créer une div fruit item, en fonction
-
-
-    //pour chaque fruit d'un magasin, il faut appeler la fonction ajouterfruit en mettant en parametres le nom, prx, stock et description récuperé dans la bdd
-}
 
 function ajouterFruit(id_magasin, callback) {
     let html = '';
