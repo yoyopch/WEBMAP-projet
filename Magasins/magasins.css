@@ -206,7 +206,11 @@ p {
 }
 
 .btn_poubelle {
-    padding-top: 4%;
+    padding-top: 8px;
+    border: none;
+    background: none;
+    width: 50px;
+    height:  50px;
 }
 
 .btn_valider {
