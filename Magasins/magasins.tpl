@@ -38,7 +38,7 @@
 </div>
 
 <div id="map"></div>
-
+<span id="btnGares">Gares</span>
 <script src="magasins.js"></script>
 </body>
 </html>
