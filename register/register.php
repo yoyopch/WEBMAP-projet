@@ -34,9 +34,8 @@ function inscription($nom, $prenom, $email, $phone, $password){
         $bool = $commande->execute();
         if ($bool) {
             $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($resultat);
-            require("../login/login.tpl");
-        }
+            $url = "../login/login.php";
+            header("Location:" . $url) ;        }
     }
     catch (PDOException $e) {
         echo utf8_encode("Echec de l'insertion : " . $e->getMessage() . "\n");
@@ -72,11 +71,11 @@ function checkpassword($password,$passwordTwo){
 
     if (regexMdp($password)) {
         if ($password != $passwordTwo) { return error("Il faut entrer les mêmes mdp !");}
-            if (strlen($password) >= $passwordSize) {
-                return true;
-            } else {
-                error("Un mot de passe sup à $passwordSize");
-            }
+        if (strlen($password) >= $passwordSize) {
+            return true;
+        } else {
+            error("Un mot de passe sup à $passwordSize");
+        }
     }
     return false;
 }
