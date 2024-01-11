@@ -186,7 +186,6 @@ function removeInCart($product,$magasin){
                 if (isset($_SESSION['profil']['isConnected']) && $_SESSION['profil']['isConnected'] === true) {
 
                     $resultat = $_SESSION['profil']['isConnected'];
-                    error_log(print_r($_SESSION['profil'],true));
                 }else{
                     $resultat = false;
                 }

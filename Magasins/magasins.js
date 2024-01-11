@@ -322,7 +322,7 @@ function removeAllAnimationClassFromMap() {
 function getmagasins(){
     $.ajax({
         type: "POST",
-        url: "magasins.php",
+        url: "../Magasins/magasins.php",
         data: {
             action: 'magasins'
         },
@@ -339,7 +339,7 @@ function getmagasins(){
 function getproduits(id_magasin, callback) {
     $.ajax({
         type: "POST",
-        url: "magasins.php",
+        url: "../Magasins/magasins.php",
         data: {
             action: 'produits',
             id_magasin: parseInt(id_magasin)
@@ -360,7 +360,7 @@ function addInCart(Product,Id_magasin){
 
             $.ajax({
                 type: "POST",
-                url: "magasins.php",
+                url: "../Magasins/magasins.php",
                 data: {
                     action: 'addincart',
                     product: parseInt(Product),
@@ -415,7 +415,7 @@ function getCart(){
 function deleteProductInCart(Product,Id_magasin){
     $.ajax({
         type: "POST",
-        url: "magasins.php",
+        url: "../Magasins/magasins.php",
         data: {
             action: 'removeincart',
             product: parseInt(Product),
@@ -436,7 +436,7 @@ function validCart(){}
 function isConnected(callback){
     $.ajax({
         type: "POST",
-        url: "magasins.php",
+        url: "../Magasins/magasins.php",
         data: {
             action: 'isconencted',
         },
