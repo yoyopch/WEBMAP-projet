@@ -218,7 +218,7 @@ function ajouterFruit(id_magasin, callback) {
     getproduits(id_magasin, function(response) {
         for (const element of response) {
             html += `
-            <button class="custom-btn" onclick="addInCart(${element.id_produit},${element.id_magasin})">
+            <button class="custom-btn" onclick='addInCart(${element.id_produit},${element.id_magasin})'>
                 <div class="fruit-item">
                     <img src=${element.chemin_image} alt="test" class="fruit-img" />
                     <div class="fruit-details">
@@ -239,34 +239,31 @@ function ajouterFruit(id_magasin, callback) {
 
 
 function addpoint (){
-    for (const element of allmagasins){
+    for (const element of allmagasins) {
         const marker = L.marker([element["latitude"], element["longitude"]], {
             icon: s_icon,
             idmagsin: element["id_magasin"]
         }).addTo(map);
 
-    const id_magasin = marker["options"]["idmagsin"].toString()
-    // crewate popup, set contnet
+        const id_magasin = marker["options"]["idmagsin"].toString()
+        // crewate popup, set contnet
 
-    const popup = L.popup({
-        pane: "fixed",
-        className: "popup-fixed",
-        autoPan: false,
-    })
-    ajouterFruit(id_magasin, function(generatedHTML) {
-        popup.setContent(generatedHTML);
-    });
-        isConnected(function(reponse){
-            if (reponse) {
-                marker.bindPopup(popup).on("click", fitBoundsPadding);
-            }
+        const popup = L.popup({
+            pane: "fixed",
+            className: "popup-fixed",
+            autoPan: false,
         })
-    }
+        ajouterFruit(id_magasin, function (generatedHTML) {
+            popup.setContent(generatedHTML);
+        });
 
+        marker.bindPopup(popup).on("click",fitBoundsPadding);
+
+    }
 }
 
 // remove all animation class when popupclose
-map.on("popupclose", function (e) {
+map.on("popupopen", function (e) {
     removeAllAnimationClassFromMap();
 });
 
@@ -357,21 +354,27 @@ function getproduits(id_magasin, callback) {
 
 
 function addInCart(Product,Id_magasin){
-   //d console.log(Product,Id_magasin)
-    $.ajax({
-        type: "POST",
-        url: "magasins.php",
-        data: {
-            action: 'addincart',
-            product: parseInt(Product),
-            magasin: parseInt(Id_magasin)
-        },
-        dataType: "json",
+    isConnected(function (reponse){
 
-        success: function(response){
-            console.log(response)
+        if (reponse) {
+
+            $.ajax({
+                type: "POST",
+                url: "magasins.php",
+                data: {
+                    action: 'addincart',
+                    product: parseInt(Product),
+                    magasin: parseInt(Id_magasin)
+                },
+                dataType: "json",
+
+                success: function (response) {
+                    showNotification(response['id'], response['Message'])
+                    getCart()
+                }
+            });
         }
-    });
+    })
 }
 
 function getCart(){
@@ -386,7 +389,7 @@ function getCart(){
         success: function(response){
             cart = response;
             if (cart != null){
-                let html
+                let html = '';
                 for (const element of cart) {
                     const produits = element.Produit;
                     const quantite = element.quantite;
@@ -398,7 +401,7 @@ function getCart(){
                                         <p>${produit.nom_produit}</p>
                                         <p>${produit.prix}</p>
                                         <p>${quantite}</p>
-                                        <img src="../IMG/IMG_magasins/Pear.svg"/>
+                                        <button type="button" onclick="deleteProductInCart(${produit.id_produit},${produit.id_magasin})" class="btn_poubelle" >  <img src="../IMG/IMG_magasins/poubelle.png" alt="poubelle" width= 25px height = 25px></button>
                                     </div>
                                 `
                     }
@@ -408,6 +411,27 @@ function getCart(){
         }
     });
 }
+
+function deleteProductInCart(Product,Id_magasin){
+    $.ajax({
+        type: "POST",
+        url: "magasins.php",
+        data: {
+            action: 'removeincart',
+            product: parseInt(Product),
+            magasin: parseInt(Id_magasin)
+        },
+        dataType: "json",
+
+        success: function(response){
+            showNotification(response['id'],response['Message'])
+            getCart()
+
+        }
+    });
+}
+
+function validCart(){}
 
 function isConnected(callback){
     $.ajax({
@@ -419,8 +443,34 @@ function isConnected(callback){
         dataType: "json",
 
         success: function(response) {
-            callback(response);
+            if (typeof response === 'object' && response !== null) {
+                showNotification(response['id'], response['Message'])
+            }else {
+                callback(response);
+            }
         }
     });
 }
 
+
+function showNotification(what,text){
+
+    switch (what) {
+        case 1:
+            iziToast.success({
+                title: 'Succès',
+                message: text,
+                timeout: 3000 // Durée en millisecondes (vous pouvez ajuster selon vos besoins)
+            });
+            break;
+        case 2:
+            iziToast.error({
+                title: 'Erreur',
+                message: text,
+                timeout: 3000 // Durée en millisecondes (vous pouvez ajuster selon vos besoins)
+            });
+            break;
+
+    }
+
+}

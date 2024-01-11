@@ -13,8 +13,8 @@
 <body>
 <div class="blank">
     <div class="infos_profil">
-        <div class="photo_profil"> <img src="../IMG/Profil/photo_profil.svg" style="border-radius: 50%; width: 75%; height: 100%"></div>
-        <div class="nom"><p>Nom :<br>Prénom :</p></div>
+        <div class="photo_profil"> <img src="../IMG/Profil/pp.jpg" style="border-radius: 50%; width: 75%; height: 100%"></div>
+        <div class="nom"><p>Nom : <?php echo($_SESSION['profil']['nom'])?> <br>Prénom : <?php echo($_SESSION['profil']['prenom'])?></p></div>
     </div>
     <div class="txt_titre_commande"<p>COMMANDES :</p></div>
 <div class="block_commande">
