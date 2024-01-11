@@ -206,7 +206,11 @@ p {
 }
 
 .btn_poubelle {
-    padding-top: 4%;
+    padding-top: 8px;
+    border: none;
+    background: none;
+    width: 50px;
+    height:  50px;
 }
 
 .btn_valider {
@@ -218,4 +222,16 @@ p {
     position: absolute;
     bottom: 5%;
     left: 10%;
+}
+
+#btnGares{
+    z-index: 999;
+    position: fixed;
+    margin-top: 100px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 100px;
+    user-select: none;
+
 }

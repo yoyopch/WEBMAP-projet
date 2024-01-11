@@ -10,6 +10,7 @@
 
 
     <!--Link JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
@@ -51,9 +52,13 @@
                         <a class="nav-link" href="../discover/discover.php">Découvrir le bio</a>
                     </li>
                 </ul>
-                <form action="../login/login.php" class="d-flex mt-3" role="search">
-                    <button class="btn btn-outline-success btnLogin" type="submit" id="btn_login" >Login</a></button>
+                <h5 id="welcome">Bienvenue : <?php echo($_SESSION['profil']['nom'].' '.$_SESSION['profil']['prenom']) ?></h5>
+                <form action="../Profil/profil.php" class="d-flex mt-4" id = "profilprofil" role="search">
                 </form>
+                <form action="../login/login.php" class="d-flex mt-3" id = "loginlogin" role="search">
+                    <button class="btn btn-outline-success btnLogin" type="submit" id="btn_login">Login</button>
+                </form>
+
             </div>
         </div>
     </div>
