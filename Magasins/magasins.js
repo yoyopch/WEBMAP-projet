@@ -68,41 +68,63 @@ var customIcon = L.icon({
     popupAnchor: [0, -32]
 });
 
-fetch("liste-des-gares.json")
-    .then(response => response.json())
-    .then(data => {
-        // Utiliser un ensemble pour stocker les noms uniques des gares
-        var uniqueNames = new Set();
+var AffichageGare=false
+var markersGare=null
+var gares = document.querySelector("#btnGares")
+gares.addEventListener("click", function () {
+    if (!AffichageGare) {
+        // Supprimer les anciens marqueurs de gare
+        if (markersGare) {
+            map.removeLayer(markersGare);
+        }
+        addpoint();
 
-        // Créer un groupe de clusters de marqueurs
-        let markers = L.markerClusterGroup();
+        fetch("liste-des-gares.json")
+            .then(response => response.json())
+            .then(data => {
+                // Utiliser un ensemble pour stocker les noms uniques des gares
+                var uniqueNames = new Set();
 
-        // Ajouter les marqueurs avec des icônes personnalisées pour chaque gare TGV en Île-de-France
-        data.forEach(gare => {
-            const departementsIDF = ["PARIS", "SEINE-ET-MARNE", "YVELINES", "ESSONNE", "HAUTS-DE-SEINE", "SEINE-SAINT-DENIS", "VAL-DE-MARNE", "VAL-D'OISE"];
-            const isIDF = departementsIDF.includes(gare.fields.departemen);
-            const name = gare.fields.libelle;
+                // Créer un groupe de clusters de marqueurs
+                markersGare = L.markerClusterGroup();
 
-            if (isIDF && !uniqueNames.has(name)) {
-                // Ajouter le nom au set pour éviter les doublons
-                uniqueNames.add(name);
+                // Ajouter les marqueurs avec des icônes personnalisées pour chaque gare TGV en Île-de-France
+                data.forEach(gare => {
+                    const departementsIDF = ["PARIS", "SEINE-ET-MARNE", "YVELINES", "ESSONNE", "HAUTS-DE-SEINE", "SEINE-SAINT-DENIS", "VAL-DE-MARNE", "VAL-D'OISE"];
+                    const isIDF = departementsIDF.includes(gare.fields.departemen);
+                    const name = gare.fields.libelle;
 
-                // Ajouter le marqueur au groupe de clusters
-                let marker = L.marker([gare.fields.geo_shape.coordinates[1], gare.fields.geo_shape.coordinates[0]], { icon: customIcon })
-                    .bindPopup("<b>" + gare.fields.libelle + "</b><br>Commune: " + gare.fields.commune);
+                    if (isIDF && !uniqueNames.has(name)) {
+                        // Ajouter le nom au set pour éviter les doublons
+                        uniqueNames.add(name);
 
-                markers.addLayer(marker);
-            }
-        });
+                        // Ajouter le marqueur au groupe de clusters
+                        let marker = L.marker([gare.fields.geo_shape.coordinates[1], gare.fields.geo_shape.coordinates[0]], {icon: customIcon})
+                            .bindPopup("<b>" + gare.fields.libelle + "</b><br>Commune: " + gare.fields.commune);
+                        map.addLayer(markersGare);
+                        markersGare.addLayer(marker);
+                    }
+                });
 
-        // Ajouter le groupe de clusters à la carte
-        map.addLayer(markers);
-    })
-    .catch(error => {
-        console.log("Erreur lors du chargement des données : ", error);
-    });
+                // Ajouter le groupe de clusters à la carte
+                map.addLayer(markersGare);
+            })
+            .catch(error => {
+                console.log("Erreur lors du chargement des données : ", error);
+            });
+        AffichageGare=true
+        gares.style.backgroundColor="#00c88f";
 
 
+    } else{
+        if (markersGare) {
+            markersGare.clearLayers();
+            map.removeLayer(markersGare);
+        }
+        AffichageGare = false;
+        gares.style.backgroundColor="white";
+    }
+})
 //Fin geo loc
 
 
