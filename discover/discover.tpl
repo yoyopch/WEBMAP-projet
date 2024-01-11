@@ -13,7 +13,7 @@
 <body>
 <div class="blank">
     <div class="titleBio">
-        <h1>Découvrir le BIO </h1>
+        <h1>Découvrir le BIO</h1>
     </div>
     <div class="image_intro">
         <img src="../IMG/IMG_discover/introduction.jpg" width="20%" height="20%"/>
