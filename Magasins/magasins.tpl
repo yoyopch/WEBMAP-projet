@@ -49,6 +49,9 @@
 
 <div id="map"></div>
 
+<buton id="btnGares"> Gares</buton>
+
+
 <script src="magasins.js">
 
 </script>
