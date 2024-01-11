@@ -236,14 +236,14 @@ function FruitsMagasin(idMagasin) {
 
 function ajouterFruit(id_magasin, callback) {
     let html = '';
-    let color = green;
+    let color = 'green';
     getproduits(id_magasin, function(response) {
         for (const element of response) {
             if ( element.stock > 0 ){
-                color = black;
+                color = 'green';
             }else
             {
-                color = green;
+                color = 'red';
             }
             html += `
             <button class="custom-btn" onclick='addInCart(${element.id_produit},${element.id_magasin})'>

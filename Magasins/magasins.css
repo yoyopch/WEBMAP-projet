@@ -233,3 +233,7 @@ p {
     user-select: none;
 
 }
+
+.put-product-here{
+    overflow: scroll;
+}

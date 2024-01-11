@@ -76,50 +76,62 @@ function addInCart($product,$magasin){
 
         $produits = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($produits[0]['stock']>0){
             if (isset($_SESSION['profil']['isConnected']) && $_SESSION['profil']['isConnected'] === true) {
 
                 $produitToAdd = array('Produit' => $produits, 'quantite' => 0);
                 $key = array_search($produitToAdd['Produit'], array_column($_SESSION['profil']['cart'], 'Produit'));
-                if ($key !== false) {
-                    $_SESSION['profil']['cart'][$key]['quantite'] += 1;
-                    return [
-                        'id' => 1,
-                        'Message' => 'Le produit a été ajouté à votre panier'
-                    ];
-                } else {
+                if ($produits[0]['stock']>0){
 
-                    if (isset($_SESSION['profil']['cart'][0])) {
-                        if ($_SESSION['profil']['cart'][0]['Produit'][0]['id_magasin'] == $magasin){
-                            $produitToAdd['quantite'] = 1;
-                            $_SESSION['profil']['cart'][] = $produitToAdd;
+                    if($_SESSION['profil']['cart'][$key]['quantite'] < $produits[0]['stock']) {
+
+                        if ($key !== false) {
+                            $_SESSION['profil']['cart'][$key]['quantite'] += 1;
                             return [
                                 'id' => 1,
                                 'Message' => 'Le produit a été ajouté à votre panier'
                             ];
-                        }else{
-                            return [
-                                'id' => 2,
-                                'Message' => 'Vous avez déjà des produits d\'un autre magasin dans votre panier'
-                            ];
+                        } else {
+
+                            if (isset($_SESSION['profil']['cart'][0])) {
+                                if ($_SESSION['profil']['cart'][0]['Produit'][0]['id_magasin'] == $magasin) {
+                                    $produitToAdd['quantite'] = 1;
+                                    $_SESSION['profil']['cart'][] = $produitToAdd;
+                                    return [
+                                        'id' => 1,
+                                        'Message' => 'Le produit a été ajouté à votre panier'
+                                    ];
+                                } else {
+                                    return [
+                                        'id' => 2,
+                                        'Message' => 'Vous avez déjà des produits d\'un autre magasin dans votre panier'
+                                    ];
+                                }
+                            } else {
+
+                                $produitToAdd['quantite'] = 1;
+                                $_SESSION['profil']['cart'][] = $produitToAdd;
+                                return [
+                                    'id' => 1,
+                                    'Message' => 'Le produit a été ajouté à votre panier'
+                                ];
+                            }
                         }
                     }else{
-
-                        $produitToAdd['quantite'] = 1;
-                        $_SESSION['profil']['cart'][] = $produitToAdd;
                         return [
-                            'id' => 1,
-                            'Message' => 'Le produit a été ajouté à votre panier'
+                            'id' => 2,
+                            'Message' => 'Vous avez attent le max'
                         ];
                     }
-                }
 
-            }else{
+                }else{
+                    return [
+                        'id' => 2,
+                        'Message' => 'Plus de stock!'
+                    ];
+                }
+            } else {
                 return false;
             }
-        } else {
-            return false;
-        }
     } catch (PDOException $e) {
         // Gestion des erreurs
         echo "Erreur : " . $e->getMessage();
