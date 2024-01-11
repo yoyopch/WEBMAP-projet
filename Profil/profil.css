@@ -43,7 +43,7 @@ h1 {
     margin-bottom: 8%;
 }
 
-.block_commande{
+.block_commande {
     width: 75%;
     margin-left: auto;
     margin-right: auto;
@@ -53,18 +53,18 @@ h1 {
     padding: 0.5% 2%;
 }
 
-.txt_commande{
+.txt_commande {
     margin-left: 5%;
     font-size: 150%;
 }
 
-.etat_commande{
+.etat_commande {
     display: flex;
     flex-direction: row;
     margin-left: 5%;
 }
 
-.block_voir_commande{
+.block_voir_commande {
     display: flex;
     flex-direction: row;
     background: black;
@@ -74,7 +74,7 @@ h1 {
     margin-bottom: 5%;
 }
 
-.txt_etat{
+.txt_etat {
     margin-left: 5%;
     color: #FFFFFF;
     font-weight: bold;
