@@ -52,7 +52,7 @@
                         <a class="nav-link" href="../discover/discover.php">Découvrir le bio</a>
                     </li>
                 </ul>
-                <h5 id="welcome">Bienvenue : <?php echo($_SESSION['profil']['nom'].' '.$_SESSION['profil']['prenom']) ?></h5>
+                <h5 id="welcome">Bienvenue : <?php echo(isset($_SESSION['profil']['nom']) ? $_SESSION['profil']['nom'] : '') . ' ' . (isset($_SESSION['profil']['prenom']) ? $_SESSION['profil']['prenom'] : '') ?></h5>
                 <form action="../Profil/profil.php" class="d-flex mt-4" id = "profilprofil" role="search">
                 </form>
                 <form action="../login/login.php" class="d-flex mt-3" id = "loginlogin" role="search">

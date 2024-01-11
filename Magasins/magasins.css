@@ -126,7 +126,7 @@ body {
 .fruit-name-stock{
     display: flex;
     flex-direction: column;
-    padding: 10px 81px 0 0;
+    padding: 10px 54px 0 0;
     color: white;
     align-items: flex-start;
 }
