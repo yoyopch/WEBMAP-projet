@@ -236,9 +236,15 @@ function FruitsMagasin(idMagasin) {
 
 function ajouterFruit(id_magasin, callback) {
     let html = '';
-
+    let color = green;
     getproduits(id_magasin, function(response) {
         for (const element of response) {
+            if ( element.stock > 0 ){
+                color = black;
+            }else
+            {
+                color = green;
+            }
             html += `
             <button class="custom-btn" onclick='addInCart(${element.id_produit},${element.id_magasin})'>
                 <div class="fruit-item">
@@ -250,7 +256,7 @@ function ajouterFruit(id_magasin, callback) {
                         </div>
                         <p class="fruit-price">${element.prix}€</p>
                     </div>
-                    <div class="bulle-etats"></div>
+                    <div class="bulle-etats" style="background-color: ${color};"></div>
                 </div>
             </button>
             `;
