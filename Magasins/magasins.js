@@ -153,7 +153,10 @@ function init(){
 var popup = document.getElementById("popup")
 function hidePopupClass(){
     popup.className = "show"
-    popup.style.display = "block"
+    popup.style.display = "flex"
+    popup.style.flexDirection = "column"
+    popup.style.alignItems=" center";
+    popup.style.boxShadow="0px 0px 40px 9px #000000";
 }
 function showPopupClass(){
     popup.className = "hide"

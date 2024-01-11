@@ -178,9 +178,14 @@ body {
     position: absolute;
     display: none;
     z-index: 9998;
-    border: 3px solid black;
     background: white;
     border-radius: 10px;
+    box-shadow: 0 0 24px 5px rgba(0,0,0,0.44);
+}
+
+.show{
+    display: flex;
+    flex-direction: column;
 }
 
 h2 {
@@ -195,6 +200,7 @@ h2 {
     margin-top: 0.5%;
     padding: 3%;
     border: 2px solid black;
+    align-items: center;
 }
 
 
@@ -213,14 +219,13 @@ p {
 }
 
 .btn_valider {
+    position: absolute;
     width: 80%;
     height: 10%;
     font-weight: bold;
     background: saddlebrown;
     color: #FBFCFB;
-    position: absolute;
-    bottom: 5%;
-    left: 10%;
+    bottom: 5px;
 }
 #btnGares{
     z-index: 999;
@@ -236,4 +241,6 @@ p {
 
 .put-product-here{
     overflow: scroll;
+    width: 100%;
+    height: 70%;
 }
