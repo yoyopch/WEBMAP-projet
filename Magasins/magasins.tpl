@@ -49,7 +49,7 @@
 
 <div id="map"></div>
 
-<buton id="btnGares"> Gares</buton>
+<span id="btnGares"> Gares</span>
 
 
 <script src="magasins.js">
