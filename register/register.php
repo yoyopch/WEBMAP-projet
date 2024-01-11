@@ -34,9 +34,8 @@ function inscription($nom, $prenom, $email, $phone, $password){
         $bool = $commande->execute();
         if ($bool) {
             $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($resultat);
-            require("../login/login.tpl");
-        }
+            $url = "../login/login.php";
+            header("Location:" . $url) ;        }
     }
     catch (PDOException $e) {
         echo utf8_encode("Echec de l'insertion : " . $e->getMessage() . "\n");
