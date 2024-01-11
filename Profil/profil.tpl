@@ -16,7 +16,7 @@
         <h1>Bienvenue sur votre profil !</h1>
     </div>
     <div class="infos_profil">
-        <div class="photo_profil"> <img src="../IMG/Profil/pp.jpg" style="border-radius: 50%; width: 40%; height: 80%"></div>
+        <div class="photo_profil"> <img src="../IMG/Profil/pp.jpg" style="border-radius: 50%; width: 125px; height: 125px"></div>
         <div class="nom">
             <h3>Nom : <?php echo($_SESSION['profil']['nom'])?> <br>Prénom : <?php echo($_SESSION['profil']['prenom'])?></h3>
             <p>Ici, vous pouvez consulter vos commandes !</p>
