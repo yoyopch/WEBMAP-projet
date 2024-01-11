@@ -10,7 +10,6 @@
 	require("../login/login.tpl");
     else {
 		if  (!verifInfo($email,$password,$p)) {
-            $_SESSION['profil']['isConnected'] = true;
 			$msg ="Erreur de saisie OU utilisateur inconnu";
 			require("../login/login.tpl");
 		}

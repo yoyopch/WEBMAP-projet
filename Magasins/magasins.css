@@ -156,7 +156,6 @@ body {
 .bulle-etats{
     width: 15px;
     height: 15px;
-    background-color: green;
     border-radius: 100px;
     margin: 0 25px 0 0;
 }
