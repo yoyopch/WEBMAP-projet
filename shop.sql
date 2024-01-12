@@ -1,24 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
---
--- Client :  localhost
--- Généré le :  Ven 12 Janvier 2024 à 08:43
--- Version du serveur :  5.7.11
--- Version de PHP :  5.6.18
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données :  `shop`
---
+CREATE DATABASE IF NOT EXISTS `shop` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `shop`;
 
 -- --------------------------------------------------------
 
@@ -40,7 +21,10 @@ INSERT INTO `commande` (`id_client`, `id_commande`) VALUES
                                                         (11, 18),
                                                         (13, 14),
                                                         (13, 16),
-                                                        (13, 17);
+                                                        (13, 17),
+                                                        (29, 19),
+                                                        (30, 20),
+                                                        (30, 21);
 
 -- --------------------------------------------------------
 
@@ -65,7 +49,10 @@ INSERT INTO `lignecommande` (`id_ligne_commande`, `id_commande`, `id_produit`, `
                                                                                                              (15, 15, 19, 3, 2),
                                                                                                              (16, 16, 28, 4, 2),
                                                                                                              (17, 17, 25, 4, 2),
-                                                                                                             (18, 18, 23, 4, 2);
+                                                                                                             (18, 18, 23, 4, 2),
+                                                                                                             (19, 19, 32, 5, 3),
+                                                                                                             (20, 20, 31, 5, 2),
+                                                                                                             (21, 21, 3, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -120,7 +107,7 @@ CREATE TABLE `produits` (
 INSERT INTO `produits` (`id_produit`, `nom_produit`, `prix`, `stock`, `categorie`, `description_produit`, `date_ajout`, `chemin_image`, `id_magasin`) VALUES
                                                                                                                                                           (1, 'Carotte', '0.60', 25, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/Carrot.svg', 1),
                                                                                                                                                           (2, 'Fraise', '0.55', 20, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/fraise.svg', 1),
-                                                                                                                                                          (3, 'Chips', '4.00', 10, 'fruits', '1 pack', '2024-01-11', '../IMG/IMG_fruits/chips.svg', 1),
+                                                                                                                                                          (3, 'Chips', '4.00', 0, 'fruits', '1 pack', '2024-01-11', '../IMG/IMG_fruits/chips.svg', 1),
                                                                                                                                                           (4, 'Miel', '3.25', 0, 'fruits', '250g', '2024-01-11', '../IMG/IMG_fruits/Honey.svg', 1),
                                                                                                                                                           (5, 'Jus', '2.50', 12, 'fruits', '1L', '2024-01-11', '../IMG/IMG_fruits/Juice.svg', 1),
                                                                                                                                                           (6, 'Poire', '0.75', 8, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/poire.svg', 1),
@@ -148,8 +135,8 @@ INSERT INTO `produits` (`id_produit`, `nom_produit`, `prix`, `stock`, `categorie
                                                                                                                                                           (28, 'Pastèque', '2.00', 20, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/pasteque.svg', 4),
                                                                                                                                                           (29, 'Carotte', '0.60', 30, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/Carrot.svg', 5),
                                                                                                                                                           (30, 'Fraise', '0.55', 0, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/fraise.svg', 5),
-                                                                                                                                                          (31, 'Chips', '4.00', 2, 'fruits', '1 pack', '2024-01-11', '../IMG/IMG_fruits/chips.svg', 5),
-                                                                                                                                                          (32, 'Miel', '3.25', 18, 'fruits', '250g', '2024-01-11', '../IMG/IMG_fruits/Honey.svg', 5),
+                                                                                                                                                          (31, 'Chips', '4.00', 0, 'fruits', '1 pack', '2024-01-11', '../IMG/IMG_fruits/chips.svg', 5),
+                                                                                                                                                          (32, 'Miel', '3.25', 15, 'fruits', '250g', '2024-01-11', '../IMG/IMG_fruits/Honey.svg', 5),
                                                                                                                                                           (33, 'Jus', '2.50', 55, 'fruits', '1L', '2024-01-11', '../IMG/IMG_fruits/Juice.svg', 5),
                                                                                                                                                           (34, 'Poire', '0.75', 30, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/poire.svg', 5),
                                                                                                                                                           (35, 'Pastèque', '2.00', 22, 'fruits', '1 piece', '2024-01-11', '../IMG/IMG_fruits/pasteque.svg', 5);
@@ -200,7 +187,9 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `phone`, `password`) 
                                                                                     (25, 'zerzerzer', '0769631480', 'dsfsqsdqsdqsdfvxcxcvxcv@gmail.com', '+330769631480', '$2y$10$rKb.QjE7bmp9QXxFGilOQeEwfXc.358j0fBU1kwGyDPRKf4RW.1KO'),
                                                                                     (26, 'sdcwxqsdqsd', '0769631480', 'xcwqsqsdqsd@gmail.com', '+330769631480', '$2y$10$1.4opzH7IgnxjQlrJ1rSwOXWcRfNlhyM1Deigqgs2yKwEs7gyRw9W'),
                                                                                     (27, 'xcvxcvxcv', '0769631480', 'dqzeazqsdsq@gmail.com', '+330769631480', '$2y$10$EI7vxDNNAwNrRqnIPUjWF.laE9UziesfktcWHV5WDITrx/zWGX9mm'),
-                                                                                    (28, 'zaeazeqsd', 'erssdf', 'qsdqxwcwxc@gmail.com', '+330769631480', '$2y$10$Xvju5TCfiJzXba5Els.Y6OweexDKtUOlJDxFOYZWKTKhP8uSKnt9a');
+                                                                                    (28, 'zaeazeqsd', 'erssdf', 'qsdqxwcwxc@gmail.com', '+330769631480', '$2y$10$Xvju5TCfiJzXba5Els.Y6OweexDKtUOlJDxFOYZWKTKhP8uSKnt9a'),
+                                                                                    (29, 'testt', 'yohann', 'yoyo2387784@gmail.com', '+330769631480', '$2y$10$7ZoerVX17h7vQpWFaLuBy.gvA/usW.GSviSgkFYHSYVA4RSoiXQb2'),
+                                                                                    (30, 'Paul', 'Jean', 'sdfdszerze@gmail.com', '+330769631480', '$2y$10$aOy7NWZcc/PayJiSiWUM6uWRIBrRUBZEAQq.RiVQqFqDm6UEFkpd2');
 
 --
 -- Index pour les tables exportées
@@ -249,12 +238,12 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-    MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+    MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT pour la table `lignecommande`
 --
 ALTER TABLE `lignecommande`
-    MODIFY `id_ligne_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+    MODIFY `id_ligne_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT pour la table `magasins`
 --
@@ -269,7 +258,7 @@ ALTER TABLE `produits`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- Contraintes pour les tables exportées
 --
@@ -293,7 +282,3 @@ ALTER TABLE `lignecommande`
 --
 ALTER TABLE `produits`
     ADD CONSTRAINT `fk_magasin` FOREIGN KEY (`id_magasin`) REFERENCES `magasins` (`id_magasin`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
