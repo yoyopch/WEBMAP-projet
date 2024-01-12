@@ -5,6 +5,7 @@
     <title>Profil</title>
     <link rel="stylesheet" href="profil.css">
     <link rel="stylesheet" href="../Navbar/navbar.css">
+    <script src="profil.js"></script>
 
 </head>
 
@@ -28,18 +29,8 @@
         </div>
         <div class="txt_commande"<p>Commandes en cours :</p></div>
     <div class="etat_commande">
-        <div class="block_voir_commande">
-            <div class="txt_etat"><p>ID #1</p></div>
-            <input type="button" value="Voir la commande">
-        </div>
     </div>
 
-    <div class="txt_commande"<p>Commandes terminées :</p></div>
-<div class="etat_commande">
-    <div class="block_voir_commande">
-        <div class="txt_etat"><p>ID #2</p></div>
-        <input type="button" value="Voir la commande">
-    </div>
 </div>
 
 </div>

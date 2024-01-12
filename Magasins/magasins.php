@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-
-
-
 if (count($_POST) == 0) {
     require("magasins.tpl");
 }
@@ -82,7 +79,12 @@ function addInCart($product,$magasin){
                 $key = array_search($produitToAdd['Produit'], array_column($_SESSION['profil']['cart'], 'Produit'));
                 if ($produits[0]['stock']>0){
 
-                    if($_SESSION['profil']['cart'][$key]['quantite'] < $produits[0]['stock']) {
+                    if($key !== false and $_SESSION['profil']['cart'][$key]['quantite'] >= $produits[0]['stock']) {
+                        return [
+                            'id' => 2,
+                            'Message' => 'Vous avez attent le max'
+                        ];
+                    }
 
                         if ($key !== false) {
                             $_SESSION['profil']['cart'][$key]['quantite'] += 1;
@@ -116,12 +118,6 @@ function addInCart($product,$magasin){
                                 ];
                             }
                         }
-                    }else{
-                        return [
-                            'id' => 2,
-                            'Message' => 'Vous avez attent le max'
-                        ];
-                    }
 
                 }else{
                     return [
@@ -172,6 +168,89 @@ function removeInCart($product,$magasin){
 
 }
 
+function validcommand($product){
+    require('../connectSQL.php');
+
+    $sql = "INSERT INTO commande (id_client) VALUES (:id)";
+    try {
+        $commande = $pdo->prepare($sql);
+        $commande->bindParam(':id', $_SESSION['profil']['id']);
+
+        $bool = $commande->execute();
+
+        if ($bool) {
+            // Récupération de l'ID après l'opération d'insertion
+            $id_nouvelle_commande = $pdo->lastInsertId();
+
+            foreach ($product as $element) {
+
+
+                $sql = "INSERT INTO LigneCommande  (id_commande,id_produit,id_magasin,quantite) VALUES (:id_commande,:id_product,:id_magasins,:quantite)";
+                try {
+                    $commande = $pdo->prepare($sql);
+                    $commande->bindParam(':id_commande', $id_nouvelle_commande);
+                    $commande->bindParam(':id_product', $element['Produit'][0]['id_produit']);
+                    $commande->bindParam(':id_magasins', $element['Produit'][0]['id_magasin']);
+                    $commande->bindParam(':quantite', $element['quantite']);
+
+                    $bool = $commande->execute();
+                    if ($bool) {
+                        $_SESSION['profil']['cart'] = array();
+                        $sql = "UPDATE produits SET stock = stock - :quantite WHERE id_produit = :id_product and id_magasin = :id_magasins";
+                        try {
+                            $tkt = $pdo->prepare($sql);
+                            $tkt->bindParam(':id_product', $element['Produit'][0]['id_produit']);
+                            $tkt->bindParam(':id_magasins', $element['Produit'][0]['id_magasin']);
+                            $tkt->bindParam(':quantite', $element['quantite']);
+
+                            $tkt->execute();
+                        } catch (PDOException $e) {
+                            error_log(print_r($e->getMessage(), true));
+                            // Gestion des erreurs de la ligne de commande
+                            echo utf8_encode("Echec de l'insertion de la ligne de commande : " . $e->getMessage() . "\n");
+                            return false;
+                        }
+                        return [
+                            'id' => 1,
+                            'Message' => 'Commande effectuer!'
+                        ];
+                    }
+                } catch (PDOException $e) {
+                    // Gestion des erreurs de la ligne de commande
+                    echo utf8_encode("Echec de l'insertion de la ligne de commande : " . $e->getMessage() . "\n");
+                    return false;
+                }
+            }
+            return true; // Succès de toutes les insertions
+
+        }
+    }
+    catch (PDOException $e) {
+
+        // Gestion des erreurs de l'insertion de la commande
+        echo utf8_encode("Echec de l'insertion de la commande : " . $e->getMessage() . "\n");
+    }
+    return false; // Échec de l'insertion de la commande
+}
+
+
+function getcommand(){
+    require('../connectSQL.php');
+
+    $query = "SELECT * FROM commande WHERE id_client = :id";
+    $statement = $pdo->prepare($query);
+
+    // Remplacer :id par la valeur réelle du paramètre
+    $statement->bindParam(':id', $_SESSION['profil']['id']);
+
+    // Exécution de la requête
+    $statement->execute();
+
+    // Récupération des résultats
+    $command = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $command;
+}
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -210,6 +289,12 @@ if (isset($_POST['action'])) {
             break;
         case 'removeincart':
             $resultat = removeInCart($_POST['product'],$_POST['magasin']);
+            break;
+        case 'validcommand':
+            $resultat = validcommand($_POST['product']);
+            break;
+        case 'getcommand':
+            $resultat = getcommand();
             break;
         default:
             $resultat = "erreur";

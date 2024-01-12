@@ -30,11 +30,10 @@
     <img src="../IMG/iconPanier.svg"/>
 </button>
 <div id="popup" class="hide">
-    <h2>Votre panier</h2>
     <div class="put-product-here">
 
     </div>
-    <button class="btn_valider" id="btn_valider">Valider le panier</button>
+    <button class="btn_valider" id="btn_valider" onclick="validCart()">Valider le panier </button>
 </div>
 
 <div id="map"></div>

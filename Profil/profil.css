@@ -65,7 +65,7 @@ h1 {
 
 .etat_commande{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-left: 5%;
 }
 

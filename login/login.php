@@ -15,6 +15,7 @@
 		}
 		else {
 			$_SESSION['profil'] = $p;
+            error_log(print_r($p,true));
 			$url = "../Magasins/magasins.php";
 			header("Location:" . $url) ;
             $_SESSION['profil']['isConnected'] = true;

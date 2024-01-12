@@ -378,12 +378,16 @@ function getCart(){
             cart = response;
             if (cart != null){
                 let html = '';
+                let html2 = '';
+                let idmagsin = 0;
                 for (const element of cart) {
                     const produits = element.Produit;
                     const quantite = element.quantite;
 
+
                     for (const produit of produits) {
-                        html += `
+                        idmagsin = produit.id_magasin;
+                        html2 += `
                                     <div class="info_panier">
                                         <img src=${produit.chemin_image}>
                                         <p>${produit.nom_produit}</p>
@@ -394,7 +398,16 @@ function getCart(){
                                 `
                     }
                 }
-                document.querySelector('.put-product-here').innerHTML = html
+
+
+                for (const mag of allmagasins) {
+
+                    if (mag.id_magasin == idmagsin){
+                        html = `<h2>Votre panier <br> ${mag.nom_magasin}</h2>`
+                    }
+                }
+
+                document.querySelector('.put-product-here').innerHTML = html + html2
             }
         }
     });
@@ -419,7 +432,28 @@ function deleteProductInCart(Product,Id_magasin){
     });
 }
 
-function validCart(){}
+function validCart(){
+    if (cart.length !== 0){
+        $.ajax({
+            type: "POST",
+            url: "../Magasins/magasins.php",
+            data: {
+                action: 'validcommand',
+                product: cart,
+
+            },
+            dataType: "json",
+
+            success: function(response){
+                showNotification(response['id'],response['Message'])
+                getCart()
+                getmagasins()
+
+            }
+        });
+    }
+}
+
 
 function isConnected(callback){
     $.ajax({

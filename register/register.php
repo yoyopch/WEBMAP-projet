@@ -19,23 +19,26 @@ else {
     }
 }
 
-function inscription($nom, $prenom, $email, $phone, $ps){
-    $newphone = "+33".$phone;
+function inscription($n, $prenomm, $emails, $p, $ps){
+    $newphone = "+33".$p;
+    $hashedPassword = password_hash($ps, PASSWORD_DEFAULT);
+
     require('../connectSQL.php');
     $sql = "INSERT INTO utilisateur (nom, prenom, email, phone, password) VALUES (:nom, :prenom, :email, :phone, :password)";
     try {
         $commande = $pdo->prepare($sql);
-        $commande->bindParam(':nom', $nom);
-        $commande->bindParam(':prenom', $prenom);
-        $commande->bindParam(':email', $email);
+        $commande->bindParam(':nom', $n);
+        $commande->bindParam(':prenom', $prenomm);
+        $commande->bindParam(':email', $emails);
         $commande->bindParam(':phone', $newphone);
-        $commande->bindParam(':password',  password_hash($ps, PASSWORD_DEFAULT));
+        $commande->bindParam(':password',  $hashedPassword);
 
         $bool = $commande->execute();
         if ($bool) {
-            $resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
             $url = "../login/login.php";
-            header("Location:" . $url) ;        }
+            header("Location:" . $url) ;
+            exit();
+        }
     }
     catch (PDOException $e) {
         echo utf8_encode("Echec de l'insertion : " . $e->getMessage() . "\n");
