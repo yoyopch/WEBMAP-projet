@@ -388,14 +388,14 @@ function getCart(){
                     for (const produit of produits) {
                         idmagsin = produit.id_magasin;
                         html2 += `
-                                    <div class="info_panier">
-                                        <img src=${produit.chemin_image}>
-                                        <p>${produit.nom_produit}</p>
-                                        <p>${produit.prix}</p>
-                                        <p>${quantite}</p>
-                                        <button type="button" onclick="deleteProductInCart(${produit.id_produit},${produit.id_magasin})" class="btn_poubelle" >  <img src="../IMG/IMG_magasins/poubelle.png" alt="poubelle" width= 25px height = 25px></button>
-                                    </div>
-                                `
+                            <div class="info_panier">
+                                <img src=${produit.chemin_image}>
+                                <p>${produit.nom_produit}</p>
+                                <p>${produit.prix}</p>
+                                <p>${quantite}</p>
+                                <button type="button" onclick="deleteProductInCart(${produit.id_produit},${produit.id_magasin})" class="btn_poubelle" >  <img src="../IMG/IMG_magasins/poubelle.png" alt="poubelle" width= 25px height = 25px></button>
+                            </div>
+                        `
                     }
                 }
 
@@ -404,6 +404,8 @@ function getCart(){
 
                     if (mag.id_magasin == idmagsin){
                         html = `<h2>Votre panier <br> ${mag.nom_magasin}</h2>`
+                    }else{
+                        html = `<h2>Votre panier</h2>`
                     }
                 }
 
@@ -482,14 +484,14 @@ function showNotification(what,text){
             iziToast.success({
                 title: 'Succès',
                 message: text,
-                timeout: 3000 // Durée en millisecondes (vous pouvez ajuster selon vos besoins)
+                timeout: 3000
             });
             break;
         case 2:
             iziToast.error({
                 title: 'Erreur',
                 message: text,
-                timeout: 3000 // Durée en millisecondes (vous pouvez ajuster selon vos besoins)
+                timeout: 3000
             });
             break;
 

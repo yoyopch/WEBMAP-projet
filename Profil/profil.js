@@ -8,11 +8,12 @@ function init(){
         let commande = response
         if (commande.length !== 0) {
             let html = ''
-
+            let nombreIterations = 0
             for (const element of commande) {
+                nombreIterations++;
                 html += `
               <div class="block_voir_commande">
-                    <div class="txt_etat"><p>ID #${element['id_commande']}</p></div>
+                    <div class="txt_etat"><p>ID #${nombreIterations}</p></div>
                     <input type="button" value="Voir la commande">
                 </div>
                 <br>
